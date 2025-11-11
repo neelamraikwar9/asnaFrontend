@@ -1,0 +1,71 @@
+
+.workasana {
+    color: oklch(54.1% 0.281 293.009);
+
+}
+.textCenter {
+    text-align: center;
+}
+
+
+.loginCon {
+    /* background-color: aliceblue; */
+    height: 20rem;
+    width: 40rem;
+    
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    padding:1rem;  
+    /* text-align: center; */
+    /* border: 1px solid green; */
+    align-items: center;
+     
+}
+
+/* .passContainer{
+    border: 1px solid green;
+    width: 
+
+} */
+
+.password {
+    position: relative;
+    /* display: inline-block; */
+    /* border: 1px solid green; */
+
+}
+
+label {
+    font-size: large;
+}
+
+input {
+    font-size: large;
+    
+}
+
+.inpField {
+        /* border: 1px solid green; */
+        padding: 0.5rem;
+
+}
+
+.btnCon {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+width: 15rem;
+font-size: large;
+background-color: oklch(48.8% 0.243 264.376);
+color: white;
+}
+
+.btn:hover{
+    background-color: oklch(54.6% 0.245 262.881);;
+}
+
