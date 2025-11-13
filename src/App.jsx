@@ -15,7 +15,7 @@ function App() {
     <Authprovider>
      {/* <Navbar/> */}
       <Routes>
-        <Route path="/" element={<Login/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
          <Route element={<ProtectedRoute />}></Route>
         <Route path="/dashboard" element={<Dashboard/>}></Route>
       </Routes>
