@@ -5,7 +5,7 @@ import { useAuth } from '../AuthContext';
 
 export default function ProtectedRoute(){
     const { token } = useAuth();
-    return token ? <Outlet /> : <Navigate to="/login"/>
+    return token ? <Outlet /> : <Navigate to="/"/>
 }
 
 
