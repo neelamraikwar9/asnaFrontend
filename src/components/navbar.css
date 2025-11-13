@@ -6,7 +6,9 @@
 .navCon {
     border: 1px solid rgb(250, 114, 214);
     padding-top: 1rem;
-    background-color: oklch(88.576% 0.04882 298.413);
+    /* background-color: oklch(88.576% 0.04882 298.413); */
+    background-color: oklch(94.3% 0.029 294.588);
+    height: 60rem;
     
     /* display: flex; */
     /* align-items: center; */
