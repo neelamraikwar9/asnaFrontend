@@ -1,0 +1,39 @@
+.sortByCon {
+    border: 1px solid salmon;
+    /* width: */
+    height:2rem;
+    display: flex;
+    gap: 1rem;
+    margin-top: 4rem;
+
+}
+
+.prioritiesNameCon {
+    display: flex;
+    gap: 1rem;
+}
+
+.butn {
+    border-radius: 0.5rem;
+    font-size: large;
+    
+}
+
+.text{
+    font-size: 1.5rem;
+}
+
+
+.filterCon {
+    margin-bottom: 0rem;
+    margin-left: 5rem;
+
+}
+
+
+.sortFilContainer {
+    /* display: flex; */
+    /* flex-direction: row; */
+    border: 1px solid green; 
+    height: 10rem;
+}
