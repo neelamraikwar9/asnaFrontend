@@ -1,17 +1,14 @@
 
-.workasana {
-    color: oklch(54.1% 0.281 293.009);
 
-}
 .textCenter {
     text-align: center;
 }
 
 
 .loginCon {
-    /* background-color: aliceblue; */
+    background-color: aliceblue;
     height: 20rem;
-    width: 40rem;
+    width: 100%;
     
 }
 
@@ -59,10 +56,11 @@ input {
 }
 
 .btn {
-width: 15rem;
+width: 14rem;
 font-size: large;
 background-color: oklch(48.8% 0.243 264.376);
 color: white;
+margin-top: 1rem;
 }
 
 .btn:hover{

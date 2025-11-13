@@ -13,7 +13,7 @@ function App() {
   return (
     <>
     <Authprovider>
-     <Navbar/>
+     {/* <Navbar/> */}
       <Routes>
         <Route path="/" element={<Login/>}></Route>
          <Route element={<ProtectedRoute />}></Route>

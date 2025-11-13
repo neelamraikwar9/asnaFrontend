@@ -1,9 +1,9 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* #root { */
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
   /* text-align: center; */
-}
+/* } */
 
 /* .logo {
   height: 6em;
@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 } */
+
+
+
+
+
+.workasana {
+    /* color: oklch(54.1% 0.281 293.009); */
+    color: oklch(51.1% 0.262 276.966);
+    font-size:1.9rem;
+    font-weight:bolder;
+} 
+

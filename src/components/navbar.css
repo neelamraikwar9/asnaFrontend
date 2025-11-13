@@ -1,0 +1,43 @@
+.logoCon {
+    display: flex;
+    justify-content: center;
+}
+
+.navCon {
+    border: 1px solid rgb(250, 114, 214);
+    padding-top: 1rem;
+    background-color: oklch(88.576% 0.04882 298.413);
+    
+    /* display: flex; */
+    /* align-items: center; */
+    
+}
+
+.listStyl {
+    list-style: none;
+    border: 1px solid salmon;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    padding-top: 2rem;
+    padding-left: 5rem;
+}
+
+.dashboardColor {
+   color:oklch(60.6% 0.25 292.717);
+}
+
+.navItem {
+    border: 1px solid gold;
+    padding-bottom: 1.9rem;
+    display: flex;
+    gap: 0.4rem;
+    
+}
+
+.navText {
+    font-size: larger;
+}
+
+
+
