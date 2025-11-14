@@ -1,8 +1,17 @@
-// import React from 'react'
+import Navbar from '../components/Navbar'
 
 const Team = () => {
   return (
-    <div>Team</div>
+    <main className="OuterCon">
+    <div className="navbar">
+        <Navbar/>
+     </div>
+
+      <div className="projTasksCon">
+        <h1>Teams</h1>
+        <div></div>
+      </div>
+     </main>
   )
 }
 

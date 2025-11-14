@@ -1,9 +1,9 @@
 .sortByCon {
     border: 1px solid salmon;
-    /* width: */
+    /* width:65rem; */
     height:2rem;
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: 4rem;
 
 }
@@ -11,6 +11,7 @@
 .prioritiesNameCon {
     display: flex;
     gap: 1rem;
+    width: 40rem;
 }
 
 .butn {
@@ -25,15 +26,66 @@
 
 
 .filterCon {
-    margin-bottom: 0rem;
-    margin-left: 5rem;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 10rem;
 
 }
 
 
 .sortFilContainer {
-    /* display: flex; */
-    /* flex-direction: row; */
+    display: flex;
+    flex-direction: row;
     border: 1px solid green; 
-    height: 10rem;
+    height: 6rem;
+}
+
+
+.seleBox {
+    font-size: large;
+    /* margin-bottom: 4rem; */
+    /* padding-bottom: rem; */
+
+
+    border: 1px solid blue
+}
+
+.taskBtnCon {
+    padding-left: 4rem;
+}
+
+.taskBtn {
+    margin-top: 0;
+    border-radius: 0.5rem;
+    width: 8rem;
+    height: 2rem;
+   
+}
+
+
+.tasksInfoTable {
+    display: flex;
+    border: 2px solid rgb(216, 238, 13);
+    width: 82.6rem;
+    height: 17rem;
+    margin-top: 4rem;
+    border-radius: 0.5rem;
+}
+
+.box {
+    border: 1px solid rgb(73, 226, 43);
+    width: 20rem;
+    /* height: 14rem; */
+    /* padding: 0.rem; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.tableTitle {
+    /* border: 1px solid green; */
+    background-color: aliceblue;
+  
 }

@@ -77,4 +77,17 @@
     height: auto;
 }
 
+.filCon {
+    border: 1px solid rgb(241, 232, 225);
+    margin-top: 3rem;
+    font-size: larger;
+    height: 2rem;
+    padding: 0.2rem;
+}
+
+
+.select {
+    margin-left: 1rem;
+}
+
 

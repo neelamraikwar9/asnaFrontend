@@ -104,8 +104,9 @@ useEffect(() => {
             style={{backgroundColor: task.status === "Completed" ? "oklch(95% 0.052 163.051)" : task.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
             {task.status}</p>
             <h2>{task.name}</h2>
-            <p>Due On: {task.createdAt}</p>
-            <p>Team Name:{task.team.name}</p>
+            {/* <p>Due On: {task.createdAt}</p> */}
+            <p>{new Date(task.createdAt).toLocaleDateString()}</p>
+            <p><strong>Team Name: </strong>{task.team.name}</p>
             </div>)}
           </div>
 

@@ -8,7 +8,7 @@ function Navbar() {
         <nav className='navCon'>
 
         <div className="logoCon">
-        <NavLink href="/dashboard" className="workasana">Workasana</NavLink>
+        <NavLink to="/dashboard" className="workasana">Workasana</NavLink>
         </div>
 
         <ul className= "listStyl">
