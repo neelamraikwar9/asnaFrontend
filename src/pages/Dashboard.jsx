@@ -7,6 +7,8 @@ import {useState,  useEffect } from 'react';
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
   console.log(tasks, "checkign")
   const [projects, setProjects] = useState([]);
 
@@ -16,11 +18,14 @@ const Dashboard = () => {
   const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
   console.log(resTasks.data);
   setTasks(resTasks.data);
-  console.log(tasks, "checking tasks")
+  console.log(tasks, "checking tasks");
+  setLoading(false);
+
 
   console.log(resProjs.data);
   setProjects(resProjs.data);
   } catch(error){
+    setError(err.message);
     console.log("Error message: ", error.message);
   }
 }
@@ -60,7 +65,7 @@ useEffect(() => {
           <button className="newProjBtn"> + New Project</button>
           </div>
 
-          <div className='projsCon'>
+          <div className='projsCon'>                                                                                                                                                                                                                                                                                                                                                                                                                              
             {projects.slice(0, 3).map((proj) => 
             <div className="projCard"  key={proj._id}>
             
@@ -106,7 +111,7 @@ useEffect(() => {
             <h2>{task.name}</h2>
             {/* <p>Due On: {task.createdAt}</p> */}
             <p>{new Date(task.createdAt).toLocaleDateString()}</p>
-            <p><strong>Team Name: </strong>{task.team.name}</p>
+            {/* <p><strong>Team Name: </strong>{task.team.map((t) => t.name)}</p> */}
             </div>)}
           </div>
 
