@@ -15,7 +15,7 @@ function Navbar() {
 
         <li className='navItem'>
         <img src="./icons/dashboard.png" alt="Dashboard Icon" style={{height: '1.8rem', width: '1.8rem'}}/>
-        <NavLink to="/dashboard" className="navText dashboardColor" >Dashboard</NavLink>
+        <NavLink to="/dashboard" className="navText" >Dashboard</NavLink>
         </li>
 
           <li className='navItem'>

@@ -28,7 +28,7 @@ body {
     border: 1px solid sandybrown;
     display: flex;
     gap: 2rem;
-    width: 63rem;
+    width: 60rem;
     flex-wrap: nowrap;
 }
 
@@ -46,7 +46,7 @@ body {
     height: 2rem;
     border-radius: 0.3rem;
     margin-top: 3.3rem;
-    margin-left: 30rem;
+    margin-left: 25rem;
     
 }
 
@@ -56,7 +56,7 @@ body {
 
 .projCard {
     border: 1px solid red;
-    width: 25rem;
+    width: 20rem;
     height: 20rem;
     border-radius: 0.5rem;
     padding: 1rem;
