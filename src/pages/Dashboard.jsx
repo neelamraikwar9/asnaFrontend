@@ -25,7 +25,7 @@ const Dashboard = () => {
   console.log(resProjs.data);
   setProjects(resProjs.data);
   } catch(error){
-    setError(err.message);
+    setError(error.message);
     console.log("Error message: ", error.message);
   }
 }
@@ -43,7 +43,7 @@ useEffect(() => {
      <div className="projTasksCon">
         <div className="searchBarCon">
           <input type="search" placeholder='search' className="searchInp"/>
-          <img src="./icons/searchbar.png" alt="searchbar icon" style={{width: '1.6rem', height: "1.6rem", position: 'absolute', left: '73rem'}}/>
+          <img src="./icons/searchbar.png" alt="searchbar icon" style={{width: '1.6rem', height: "1.6rem", position: 'absolute', left: '76rem', marginTop: '0.2rem'}}/>
         </div>
 
         <div>
@@ -65,7 +65,9 @@ useEffect(() => {
           <button className="newProjBtn"> + New Project</button>
           </div>
 
-          <div className='projsCon'>                                                                                                                                                                                                                                                                                                                                                                                                                              
+          <div className='projsCon'>
+            {loading && <p>Projects are Loading...</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}                                                                                                                                                                                                                                                                                                                                                                                                                              
             {projects.slice(0, 3).map((proj) => 
             <div className="projCard"  key={proj._id}>
             
@@ -102,6 +104,8 @@ useEffect(() => {
           </div>
 
           <div className='projsCon'>
+            {loading && <p>Tasks are Loading...</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
             {tasks.slice(0, 3).map((task) => 
             <div className="projCard tasksCard"  key={task._id}>
             

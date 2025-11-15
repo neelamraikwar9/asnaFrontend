@@ -14,11 +14,13 @@ body {
 .searchBarCon {
     border: 1px solid sandybrown;
     position: relative;
+    margin-top: 2rem; 
 }
 
 .searchInp {
     width: 95%;
     padding: 0.3rem;
+    border-radius: 0.5rem;
 }
 
 
@@ -62,6 +64,7 @@ body {
 
 .projsCon {
     display: flex;
+    flex-wrap: wrap;
 
 }
 
