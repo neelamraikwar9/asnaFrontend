@@ -12,18 +12,23 @@ const Dashboard = () => {
   console.log(tasks, "checkign")
   const [projects, setProjects] = useState([]);
 
+  const [filProjects, setFilProjects] = useState([]);
+  const [filTasks, setFilTasks] = useState([]);
+
   async function getTasks(){
   try{
   const resTasks = await axios.get('https://asna-backend.vercel.app/tasks');
   const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
   console.log(resTasks.data);
   setTasks(resTasks.data);
+  setFilTasks(resTasks.data);
   console.log(tasks, "checking tasks");
   setLoading(false);
 
 
   console.log(resProjs.data);
   setProjects(resProjs.data);
+  setFilProjects(resProjs.data);
   } catch(error){
     setError(error.message);
     console.log("Error message: ", error.message);
@@ -34,6 +39,31 @@ useEffect(() => {
   getTasks();
 }, [])
 
+
+async function handleProjFilter(e){
+  const statusOption = e.target.value; 
+  
+  try{
+  const projStatus = await axios.get(`https://asna-backend.vercel.app/projects/status/${statusOption}`);
+  console.log(projStatus.data, "proj");
+  setFilProjects(projStatus.data);
+
+  } catch(error){
+    console.log(error);
+  }
+}
+
+
+async function handleTaskFilter(e){
+const taskOption = e.target.value; 
+try{
+const taskStatus = await axios.get(`https://asna-backend.vercel.app/tasks/status/${taskOption}`);
+console.log(taskStatus.data, "tasksstatus");
+setFilTasks(taskStatus.data);
+} catch(error){
+  console.log(error)
+}
+}
   return (
     <main className="OuterCon">
     <div className="navbar">
@@ -53,12 +83,10 @@ useEffect(() => {
 
           <div className="filCon">
           <label>Filter</label>
-          <select className="select">
-            {/* <option value=""></option> */}
+          <select className="select" onChange={handleProjFilter}>
             <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
             <option value="To Do">To Do</option>
-            {/* <option value=""></option> */}
           </select>
           </div>
 
@@ -68,7 +96,10 @@ useEffect(() => {
           <div className='projsCon'>
             {loading && <p>Projects are Loading...</p>}
             {error && <p style={{ color: "red" }}>{error}</p>}                                                                                                                                                                                                                                                                                                                                                                                                                              
-            {projects.slice(0, 3).map((proj) => 
+            {/* {projects.slice(0, 3).map((proj) =>  */}  
+
+            
+            {filProjects.map((proj) =>   
             <div className="projCard"  key={proj._id}>
             
             <p
@@ -88,16 +119,12 @@ useEffect(() => {
 
           <div className="container">
           <h2 className="headText">My Tasks</h2>
-        
-
           <div className="filCon">
           <label>Filter</label>
-          <select className="select">
-            {/* <option value=""></option> */}
+          <select className="select" onChange={handleTaskFilter}>
             <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
             <option value="To Do">To Do</option>
-            {/* <option value=""></option> */}
           </select>
           </div>
 
@@ -107,17 +134,23 @@ useEffect(() => {
           <div className='projsCon'>
             {loading && <p>Tasks are Loading...</p>}
             {error && <p style={{ color: "red" }}>{error}</p>}
-            {tasks.slice(0, 3).map((task) => 
-            <div className="projCard tasksCard"  key={task._id}>
+            {/* {tasks.slice(0, 3).map((task) =>  */}
+
+
+            {/* //now it becomes object after filtering so it will not run on map. */}
+            {/* {filTasks.map((task) =>  */}
+
+            <div className="projCard tasksCard"  key={filTasks._id}>
             
             <p
-            style={{backgroundColor: task.status === "Completed" ? "oklch(95% 0.052 163.051)" : task.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
-            {task.status}</p>
-            <h3>{task.name}</h3>
+            style={{backgroundColor: filTasks.status === "Completed" ? "oklch(95% 0.052 163.051)" : filTasks.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
+            {filTasks.status}</p>
+            <h3>{filTasks.name}</h3>
             {/* <p>Due On: {task.createdAt}</p> */}
-            <p>{new Date(task.createdAt).toLocaleDateString()}</p>
+            <p>{new Date(filTasks.createdAt).toLocaleDateString()}</p>
             {/* <p><strong>Team Name: </strong>{task.team.map((t) => t.name)}</p> */}
-            </div>)}
+            </div>
+            {/* )} */}
           </div>
 
         </div>
