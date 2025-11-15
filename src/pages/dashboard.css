@@ -28,7 +28,7 @@ body {
     border: 1px solid sandybrown;
     display: flex;
     gap: 2rem;
-    width: 50rem;
+    width: 55rem;
     flex-wrap: nowrap;
 }
 

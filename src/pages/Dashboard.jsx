@@ -43,7 +43,7 @@ useEffect(() => {
      <div className="projTasksCon">
         <div className="searchBarCon">
           <input type="search" placeholder='search' className="searchInp"/>
-          <img src="./icons/searchbar.png" alt="searchbar icon" style={{width: '1.6rem', height: "1.6rem", position: 'absolute', left: '76rem', marginTop: '0.2rem'}}/>
+          <img src="./icons/searchbar.png" alt="searchbar icon" style={{width: '1.6rem', height: "1.6rem", position: 'absolute', left: '50rem', marginTop: '0.2rem'}}/>
         </div>
 
         <div>
