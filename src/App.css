@@ -73,7 +73,7 @@
 
 .projTasksCon {
     border: 1px solid blue;
-    width: 83rem;
+    width: 70rem;
     height: auto;
 }
 
@@ -91,6 +91,7 @@
 
 .select {
     margin-left: 1rem;
+    border-color: rgb(233, 237, 241);;
 }
 
 
