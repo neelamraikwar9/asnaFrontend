@@ -49,7 +49,7 @@ useEffect(() => {
         <div>
 
           <div className="container">
-          <h2>Projects</h2>
+          <h2 className="headText">Projects</h2>
 
           <div className="filCon">
           <label>Filter</label>
@@ -87,7 +87,7 @@ useEffect(() => {
         <div>
 
           <div className="container">
-          <h2>My Tasks</h2>
+          <h2 className="headText">My Tasks</h2>
 
           <div className="filCon">
           <label>Filter</label>
