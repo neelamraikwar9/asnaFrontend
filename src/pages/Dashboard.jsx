@@ -15,6 +15,8 @@ const Dashboard = () => {
   const [filProjects, setFilProjects] = useState([]);
   const [filTasks, setFilTasks] = useState([]);
 
+  const [projForm, setProjForm] = useState(false);
+
   async function getTasks(){
   try{
   const resTasks = await axios.get('https://asna-backend.vercel.app/tasks');
@@ -47,6 +49,7 @@ async function handleProjFilter(e){
   const projStatus = await axios.get(`https://asna-backend.vercel.app/projects/status/${statusOption}`);
   console.log(projStatus.data, "proj");
   setFilProjects(projStatus.data);
+  console.log(filProjects, "filProjects");
 
   } catch(error){
     console.log(error);
@@ -59,7 +62,7 @@ const taskOption = e.target.value;
 try{
 const taskStatus = await axios.get(`https://asna-backend.vercel.app/tasks/status/${taskOption}`);
 console.log(taskStatus.data, "tasksstatus");
-setFilTasks(taskStatus.data);
+setFilTasks([taskStatus.data]);
 } catch(error){
   console.log(error)
 }
@@ -90,7 +93,24 @@ setFilTasks(taskStatus.data);
           </select>
           </div>
 
-          <button className="newProjBtn"> + New Project</button>
+          <button className="newProjBtn" onClick={() => setProjForm(true)}> + New Project</button>
+
+          {projForm && 
+          <div>
+          <form>
+          <h2>Create New Project</h2>
+          <label>Project Name</label>
+          <input type="text" placeholder='Enter Project Name'/>
+          
+          <label>Project Description</label>
+          <textarea type="text" placeholder='Enter Project Description'></textarea>
+         
+          <div>
+            <button className="cancelBtn">Cancel</button>
+            <button className="creatBtn">Create</button>
+          </div>
+          </form>
+          </div>}
           </div>
 
           <div className='projsCon'>
@@ -138,19 +158,19 @@ setFilTasks(taskStatus.data);
 
 
             {/* //now it becomes object after filtering so it will not run on map. */}
-            {/* {filTasks.map((task) =>  */}
+            {filTasks.map((tasks) => 
 
-            <div className="projCard tasksCard"  key={filTasks._id}>
+            <div className="projCard tasksCard"  key={tasks._id}>
             
             <p
-            style={{backgroundColor: filTasks.status === "Completed" ? "oklch(95% 0.052 163.051)" : filTasks.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
-            {filTasks.status}</p>
-            <h3>{filTasks.name}</h3>
+            style={{backgroundColor: tasks.status === "Completed" ? "oklch(95% 0.052 163.051)" : tasks.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
+            {tasks.status}</p>
+            <h3>{tasks.name}</h3>
             {/* <p>Due On: {task.createdAt}</p> */}
-            <p>{new Date(filTasks.createdAt).toLocaleDateString()}</p>
+            <p>{new Date(tasks.createdAt).toLocaleDateString()}</p>
             {/* <p><strong>Team Name: </strong>{task.team.map((t) => t.name)}</p> */}
             </div>
-            {/* )} */}
+            )}
           </div>
 
         </div>
