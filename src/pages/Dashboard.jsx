@@ -49,7 +49,7 @@ useEffect(() => {
         <div>
 
           <div className="container">
-          <h1>Projects</h1>
+          <h2>Projects</h2>
 
           <div className="filCon">
           <label>Filter</label>
@@ -74,7 +74,7 @@ useEffect(() => {
             <p
             style={{backgroundColor: proj.status === "Completed" ? "oklch(95% 0.052 163.051)" : proj.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
             {proj.status}</p>
-            <h2>{proj.name}</h2>
+            <h3>{proj.name}</h3>
             <p>{proj.description}</p>
             </div>)}
           </div>
@@ -87,7 +87,7 @@ useEffect(() => {
         <div>
 
           <div className="container">
-          <h1>My Tasks</h1>
+          <h2>My Tasks</h2>
 
           <div className="filCon">
           <label>Filter</label>
@@ -112,7 +112,7 @@ useEffect(() => {
             <p
             style={{backgroundColor: task.status === "Completed" ? "oklch(95% 0.052 163.051)" : task.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
             {task.status}</p>
-            <h2>{task.name}</h2>
+            <h3>{task.name}</h3>
             {/* <p>Due On: {task.createdAt}</p> */}
             <p>{new Date(task.createdAt).toLocaleDateString()}</p>
             {/* <p><strong>Team Name: </strong>{task.team.map((t) => t.name)}</p> */}
@@ -127,4 +127,4 @@ useEffect(() => {
   )
 }
 
-export default Dashboard
+export default Dashboard;
