@@ -76,7 +76,7 @@ setFilTasks([taskStatus.data]);
      <div className="projTasksCon">
         <div className="searchBarCon">
           <input type="search" placeholder='search' className="searchInp"/>
-          <img src="./icons/searchbar.png" alt="searchbar icon" style={{width: '1.6rem', height: "1.6rem", position: 'absolute', left: '50rem', marginTop: '0.2rem'}}/>
+          <img src="./icons/searchbar.png" alt="searchbar icon" style={{width: '1.6rem', height: "1.6rem", position: 'absolute', left: '55rem', marginTop: '0.2rem'}}/>
         </div>
 
         <div>
@@ -96,12 +96,15 @@ setFilTasks([taskStatus.data]);
           <button className="newProjBtn" onClick={() => setProjForm(true)}> + New Project</button>
 
           {projForm && 
-          <div>
-          <form>
+          <div className="modal-overlay">
+          <form className='modal-content'>
           <h2>Create New Project</h2>
+          <div>
           <label>Project Name</label>
           <input type="text" placeholder='Enter Project Name'/>
+          </div>
           
+          <div></div>
           <label>Project Description</label>
           <textarea type="text" placeholder='Enter Project Description'></textarea>
          

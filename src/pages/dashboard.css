@@ -46,7 +46,7 @@ body {
     height: 2rem;
     border-radius: 0.3rem;
     margin-top: 3.3rem;
-    margin-left: 25rem;
+    margin-left: 5rem;
     
 }
 
@@ -67,6 +67,7 @@ body {
 
 .projsCon {
     display: flex;
+    gap: 0.4rem;
     flex-wrap: wrap;
 
 }
@@ -75,4 +76,27 @@ body {
     border: 1px solid fuchsia;
     height: 13rem;
 
+}
+
+.modal-overlay {
+  position: fixed;       /* Sticks to viewport, not inside a container */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.2); /* Dim background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;         /* Above other content */
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 30rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.24);
+  min-width: 320px;
+  max-width: 90vw;
 }
