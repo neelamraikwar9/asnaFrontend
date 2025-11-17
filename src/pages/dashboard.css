@@ -94,9 +94,67 @@ body {
 .modal-content {
   background: white;
   padding: 20px;
-  width: 30rem;
+  width: 23rem;
   border-radius: 8px;
   box-shadow: 0 2px 24px rgba(0,0,0,0.24);
   min-width: 320px;
   max-width: 90vw;
+}
+
+.fieldCon {
+    display: flex; 
+    flex-direction: column;
+    /* border: 1px solid blue; */
+    padding: 1rem 0;
+}
+
+.projName {
+    /* border: 1px solid blue; */
+    padding-bottom: 1rem ;
+
+}
+
+.inp{
+    margin-top: 0.2rem;
+    width: 22rem;
+    border-radius: 0.3rem;
+}
+
+.desInp{
+    padding-bottom: 3rem; 
+
+}
+
+.projFormBtns {
+    margin-top: 1rem;
+    display: flex;
+    gap: 2rem;
+    /* border: 1px solid blue; */
+}
+
+.cBtn {
+    border-radius: 0.3rem;
+}
+
+.cancelBtn {
+    background-color: oklch(44.6% 0.043 257.281);
+    /* border: 1px solid blue; */
+    padding: 0.5rem 0.5rem;
+    color: white; 
+
+}
+
+.cancelBtn:hover{
+    background-color: oklch(55.1% 0.027 264.364);
+
+}
+
+.creatBtn {
+    background-color: oklch(54.6% 0.245 262.881);
+    padding: 0.5rem 0.5rem;
+    color: white; 
+}
+
+.creatBtn:hover{
+    background-color: oklch(62.3% 0.214 259.815);
 }

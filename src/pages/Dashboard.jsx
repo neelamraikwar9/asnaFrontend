@@ -16,21 +16,35 @@ const Dashboard = () => {
   const [filTasks, setFilTasks] = useState([]);
 
   const [projForm, setProjForm] = useState(false);
+  const [taskForm, setTaskForm] = useState(false);
+
+  const [teams, setTeams] = useState([]);
+  const [owners, setOwners] = useState([]);
 
   async function getTasks(){
   try{
   const resTasks = await axios.get('https://asna-backend.vercel.app/tasks');
-  const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
   console.log(resTasks.data);
   setTasks(resTasks.data);
   setFilTasks(resTasks.data);
   console.log(tasks, "checking tasks");
   setLoading(false);
 
-
+  const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
   console.log(resProjs.data);
   setProjects(resProjs.data);
   setFilProjects(resProjs.data);
+
+  const resTeam = await axios.get('https://asna-backend.vercel.app/teams');
+  setTeams(resTeam.data);
+
+  const resOwner = await axios.get('https://asna-backend.vercel.app/users');
+  setOwners(resOwner.data);
+ 
+  
+
+
+  
   } catch(error){
     setError(error.message);
     console.log("Error message: ", error.message);
@@ -99,18 +113,24 @@ setFilTasks([taskStatus.data]);
           <div className="modal-overlay">
           <form className='modal-content'>
           <h2>Create New Project</h2>
-          <div>
+          
+          <div className="fieldCon">
+          <div className="projName">
           <label>Project Name</label>
-          <input type="text" placeholder='Enter Project Name'/>
+          <br/>
+          <input type="text" placeholder='Enter Project Name' className="inp nameInp"/>
           </div>
           
-          <div></div>
+          <div className="projDes">
           <label>Project Description</label>
-          <textarea type="text" placeholder='Enter Project Description'></textarea>
+          <br/>
+          <input type="text" placeholder='Enter Project Description' className="inp desInp"/>
+          </div>
+          </div>
          
-          <div>
-            <button className="cancelBtn">Cancel</button>
-            <button className="creatBtn">Create</button>
+          <div className="projFormBtns">
+            <button className="cBtn cancelBtn">Cancel</button>
+            <button className="cBtn creatBtn">Create</button>
           </div>
           </form>
           </div>}
@@ -152,6 +172,67 @@ setFilTasks([taskStatus.data]);
           </div>
 
           <button className="newProjBtn"> + New Task</button>
+
+          <div className="modal-overlay">
+            <div className="modal-content">
+             <h2>Create New Task</h2>
+            <form>
+            <div>
+             <label>Select Project</label>
+             <br/>
+             <select>
+              {projects.map((project) => 
+              <option key={project._id} value={project.name}>{project.name}</option>
+              )}
+             </select>
+             </div>
+             
+             <div>
+             <label>Task Name</label>
+             <br/>
+             <input type="text" placeholder="Enter Task Name"/>
+             </div>
+
+             <div>
+             <label>Select Team</label>
+             <br/>
+             <select>
+             {teams.map((team) => 
+             <option key={team._id} value={team.name}>{team.name}</option>)}
+             </select>
+             </div>
+
+             <div>
+              <label>Select Owner</label>
+              <br/>
+              <select>
+                {owners.map((owner) => 
+                <option key={owner._id} value={owner.name}>{owner.name}</option>)}
+              </select>
+             </div>
+
+             <div>
+              <label>Select Tags</label>
+              <select>
+                {}
+              </select>
+             </div>
+
+             <div>
+              <label>Select Due Date</label>
+              <input type="date" placeholder="Select date"/>
+             </div>
+
+             <div>
+              <label>Estimated Time</label>
+              <input type="number" placeholder="Enter Time in Days."/>
+             </div>
+
+             
+            </form>
+
+            </div>
+          </div>
           </div>
 
           <div className='projsCon'>
