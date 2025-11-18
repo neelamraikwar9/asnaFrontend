@@ -214,7 +214,7 @@ setFilTasks([taskStatus.data]);
      <div className="projTasksCon">
         <div className="searchBarCon">
           <input type="search" placeholder='search' className="searchInp"/>
-          <img src="./icons/searchbar.png" alt="searchbar icon" style={{width: '1.6rem', height: "1.6rem", position: 'absolute', left: '55rem', marginTop: '0.2rem'}}/>
+          <img src="./icons/searchbar.png" alt="searchbar icon" style={{width: '1.6rem', height: "1.6rem", position: 'absolute', left: '60rem', marginTop: '0.2rem'}}/>
         </div>
 
         <div>
@@ -231,7 +231,7 @@ setFilTasks([taskStatus.data]);
           </select>
           </div>
           
-          <div className="projBtnCon">
+          <div className="projBtnCon" style={{width: '31rem', paddingLeft:'2rem'}}>
           <button className="newProjBtn" onClick={() => setProjForm(true)}> + New Project</button>
           </div>
 
@@ -295,7 +295,7 @@ setFilTasks([taskStatus.data]);
             style={{backgroundColor: proj.status === "Completed" ? "oklch(95% 0.052 163.051)" : proj.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
             {proj.status}</p>
             <h3>{proj.name}</h3>
-            <p style={{fontSize: '0.9rem'}}>{proj.description}</p>
+            <p style={{fontSize: '0.8rem'}}>{proj.description}</p>
             </div>)}
           </div>
 

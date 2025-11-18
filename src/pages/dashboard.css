@@ -18,7 +18,7 @@ body {
 }
 
 .searchInp {
-    width: 95%;
+    width: 99%;
     padding: 0.3rem;
     border-radius: 0.5rem;
 }
@@ -66,10 +66,10 @@ body {
 .projCard {
     border: 1px solid red;
     width: 20rem;
-    height: 20rem;
+    height: 15rem;
     border-radius: 0.5rem;
-    padding: 0.3rem;
-    margin: rem;
+    padding: 0.2rem;
+    margin: 0.1rem;
     /* background-color: oklch(89.4% 0.057 293.283); */
     background-color:oklch(96.9% 0.016 293.756);
 }
