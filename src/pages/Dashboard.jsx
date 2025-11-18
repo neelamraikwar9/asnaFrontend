@@ -230,8 +230,10 @@ setFilTasks([taskStatus.data]);
             <option value="To Do">To Do</option>
           </select>
           </div>
-
+          
+          <div className="projBtnCon">
           <button className="newProjBtn" onClick={() => setProjForm(true)}> + New Project</button>
+          </div>
 
           {projForm && 
           <div className="modal-overlay">
@@ -293,7 +295,7 @@ setFilTasks([taskStatus.data]);
             style={{backgroundColor: proj.status === "Completed" ? "oklch(95% 0.052 163.051)" : proj.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
             {proj.status}</p>
             <h3>{proj.name}</h3>
-            <p>{proj.description}</p>
+            <p style={{fontSize: '0.9rem'}}>{proj.description}</p>
             </div>)}
           </div>
 
@@ -314,8 +316,10 @@ setFilTasks([taskStatus.data]);
             <option value="To Do">To Do</option>
           </select>
           </div>
-
+          
+          <div className="projBtnCon">
           <button className="newProjBtn" onClick={() => setTaskForm(true)}> + New Task</button>
+          </div>
           {taskForm &&  
           <div className="modal-overlay">
             <div className="modal-content">
