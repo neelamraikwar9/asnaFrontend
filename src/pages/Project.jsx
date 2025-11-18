@@ -66,7 +66,7 @@ useEffect(() => {
           </div>
           
           <div className="taskBtnCon">
-          <button className="btn taskBtn">+ New Task</button>
+          <button className="taskBtn">+ New Task</button>
           </div>
           </div>
         </div>
