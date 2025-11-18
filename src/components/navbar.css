@@ -10,7 +10,7 @@
     /* background-color: oklch(88.576% 0.04882 298.413); */
     background-color: oklch(94.3% 0.029 294.588);
     width: 15rem;
-    height: 60rem;
+    height: auto;
     
     /* display: flex; */
     /* align-items: center; */

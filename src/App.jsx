@@ -11,12 +11,14 @@ import Report from './pages/Report';
 import Setting from './pages/Setting';
 import { Authprovider } from './AuthContext';
 import { ToastContainer } from 'react-toastify';
+import { TaskFormProvider } from './Context/TaskFormContext';
 
 function App() {
  
 
   return (
     <>
+    <TaskFormProvider>
     <Authprovider>
      {/* <Navbar/> */}
       <Routes>
@@ -30,6 +32,7 @@ function App() {
       </Routes>
        <ToastContainer />
       </Authprovider>
+      </TaskFormProvider>
     </>
   )
 }

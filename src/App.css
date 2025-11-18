@@ -69,6 +69,7 @@
     border: 1px solid blue;
     width: 15.1rem;
     height: auto;
+    background-color: oklch(94.3% 0.029 294.588);
 }
 
 .projTasksCon {

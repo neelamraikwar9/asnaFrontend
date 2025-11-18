@@ -4,6 +4,7 @@ import axios from 'axios';
 import {useState,  useEffect } from 'react';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useTaskForm } from '../Context/TaskFormContext';
 
 
 
@@ -22,6 +23,8 @@ const Dashboard = () => {
 
   const [projForm, setProjForm] = useState(false);
   const [taskForm, setTaskForm] = useState(false);
+
+  const { tForm, handleTaskOnChange, handleTaskSubmit} = useTaskForm;
 
   const [pForm, setpForm] = useState({
     name : '',
@@ -73,64 +76,64 @@ async function handleProjSubmit(e){
 }
 
 
-const [tForm, setTForm] = useState({
-  name: "",
-  project: "",
-  team: "",
-  owners: "",
-  tags: "",
-  timeToComplete: "",
-  status: "",
-  createdAt: ""
-});
+// const [tForm, setTForm] = useState({
+//   name: "",
+//   project: "",
+//   team: "",
+//   owners: "",
+//   tags: "",
+//   timeToComplete: "",
+//   status: "",
+//   createdAt: ""
+// });
 
 
-function handleTaskOnChange(e){
-  const {name, value} = e.target; 
-  setTForm((prev) => ({...prev, [name] : value}))
-}
+// function handleTaskOnChange(e){
+//   const {name, value} = e.target; 
+//   setTForm((prev) => ({...prev, [name] : value}))
+// }
 
 
-async function handleTaskSubmit(e){
-  e.preventDefault();
-  console.log(tForm, "submitting form...")
+// async function handleTaskSubmit(e){
+//   e.preventDefault();
+//   console.log(tForm, "submitting form...")
 
-  const subTForm = {...tForm, tags: tForm.tags ? [tForm.tags] : [] };
-  console.log(subTForm, "checkignsubtform")
+//   const subTForm = {...tForm, tags: tForm.tags ? [tForm.tags] : [] };
+//   console.log(subTForm, "checkignsubtform")
 
-  try{
-    const res = await axios.post("https://asna-backend.vercel.app/tasks", JSON.stringify(subTForm), {
-      headers: {"content-Type" : "application/json"}
-    });
-    console.log(res.data, "Details added successfully");
-    toast.success("Task Added successfully.");
+//   try{
+//     const res = await axios.post("https://asna-backend.vercel.app/tasks", JSON.stringify(subTForm), {
+//       headers: {"content-Type" : "application/json"}
+//     });
+//     console.log(res.data, "Details added successfully");
+//     toast.success("Task Added successfully.");
 
-    setTForm({
-      name: "",
-      project: "",
-      team: "",
-      owners: "",
-      tags: "",
-      timeToComplete: "",
-      status: "",
-      createdAt: ""
-    })
-  }  catch(error){
-  console.log(error, "Error Submitting Task.")
+//     setTForm({
+//       name: "",
+//       project: "",
+//       team: "",
+//       owners: "",
+//       tags: "",
+//       timeToComplete: "",
+//       status: "",
+//       createdAt: ""
+//     })
+//   }  catch(error){
+//   console.log(error, "Error Submitting Task.")
 
-  if(error.response){
-    console.error("Server error:", error.response.data);
-    console.error("Status:", error.response.status);
-    alert(` Error: ${error.response.data.message || "Failed to add lead"}`);
-  } else if(error.request){
-    console.error("Network error:", error.request);
-    alert("Network error: Please check your internet connection.");
-  }  else {
-        console.error("Error:", error.message);
-        alert(` Error: ${error.message}`);
-      }
-}
-}
+//   if(error.response){
+//     console.error("Server error:", error.response.data);
+//     console.error("Status:", error.response.status);
+//     alert(` Error: ${error.response.data.message || "Failed to add lead"}`);
+//   } else if(error.request){
+//     console.error("Network error:", error.request);
+//     alert("Network error: Please check your internet connection.");
+//   }  else {
+//         console.error("Error:", error.message);
+//         alert(` Error: ${error.message}`);
+//       }
+// }
+// }
 
 
 
@@ -328,7 +331,7 @@ setFilTasks([taskStatus.data]);
             <div className="field">
              <label>Select Project</label>
              <br/>
-             <select className="inpField" name="project" value={tForm.project} onChange={handleTaskOnChange}>
+             <select className="inpField" name="project" value={tForm?.project} onChange={handleTaskOnChange}>
              {loading && <p>projects are loading...</p>}
              {error && <p style={{color: 'red'}}>{error}</p>}
               {projects.map((project) => 
@@ -340,13 +343,13 @@ setFilTasks([taskStatus.data]);
              <div className="field">
              <label>Task Name</label>
              <br/>
-             <input type="text" placeholder="Enter Task Name" className="userInpfield" name="name" value={tForm.name} onChange={handleTaskOnChange}/>
+             <input type="text" placeholder="Enter Task Name" className="userInpfield" name="name" value={tForm?.name} onChange={handleTaskOnChange}/>
              </div>
 
              <div className="field">
              <label>Select Team</label>
              <br/>
-             <select className="inpField" name="team" value={tForm.team} onChange={handleTaskOnChange}>
+             <select className="inpField" name="team" value={tForm?.team} onChange={handleTaskOnChange}>
              {loading && <p>projects are loading...</p>}
              {error && <p style={{color: 'red'}}>{error}</p>}
              {teams.map((team) => 
@@ -357,7 +360,7 @@ setFilTasks([taskStatus.data]);
              <div className="field">
               <label>Select Owner</label>
               <br/>
-              <select className="inpField" name="owners" value={tForm.owners} onChange={handleTaskOnChange}>
+              <select className="inpField" name="owners" value={tForm?.owners} onChange={handleTaskOnChange}>
               {loading && <p>projects are loading...</p>}
               {error && <p style={{color: 'red'}}>{error}</p>}
                 {owners.map((owner) => 
@@ -368,7 +371,7 @@ setFilTasks([taskStatus.data]);
              <div className="field">
               <label>Select Status</label>
               <br/>
-          <select className="inpField"  name="status" value={tForm.status} onChange={handleTaskOnChange}>
+          <select className="inpField"  name="status" value={tForm?.status} onChange={handleTaskOnChange}>
             <option value="To Do">To Do</option>
             <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
@@ -378,20 +381,20 @@ setFilTasks([taskStatus.data]);
 
              <div className="field">
               <label>Tags</label>
-              <input type="text" placeholder="Enter Tag Name" className="userInpfield" name="tags" value={tForm.tags} onChange={handleTaskOnChange}/>
+              <input type="text" placeholder="Enter Tag Name" className="userInpfield" name="tags" value={tForm?.tags} onChange={handleTaskOnChange}/>
              </div>
 
              <div className="field">
               <label>Select Due Date</label>
-              <input type="date" placeholder="Select date" className="userInpfield" name="createdAt" value={tForm.createdAt} onChange={handleTaskOnChange}/>
+              <input type="date" placeholder="Select date" className="userInpfield" name="createdAt" value={tForm?.createdAt} onChange={handleTaskOnChange}/>
              </div>
 
              <div className="field">
               <label>Estimated Time</label>
-              <input type="number" placeholder="Enter Time in Days." className="userInpfield" name="timeToComplete" value={tForm.timeToComplete} onChange={handleTaskOnChange}/>
+              <input type="number" placeholder="Enter Time in Days." className="userInpfield" name="timeToComplete" value={tForm?.timeToComplete} onChange={handleTaskOnChange}/>
              </div>
 
-              <div className="projFormBtns leftSide">
+            <div className="projFormBtns leftSide">
             <button className="cBtn cancelBtn" 
             onClick={() => setTaskForm(false)}
             >

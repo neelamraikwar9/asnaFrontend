@@ -51,6 +51,10 @@
 
 .taskBtnCon {
     padding-left: 0;
+    border: 1px solid purple; 
+    width: 14.9rem;
+    display: flex;
+    justify-content: end;
 }
 
 .taskBtn {
