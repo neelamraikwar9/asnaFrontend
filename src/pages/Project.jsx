@@ -40,8 +40,8 @@ useEffect(() => {
         <div>
           {projects.slice(0, 1).map((project) => 
           <div>
-            <h1>{project.name}</h1>
-            <p style={{fontSize:'1.5rem', padding: '1rem'}}>{project.description}</p>
+            <h1 className="headText">{project.name}</h1>
+            <p style={{fontSize:'1rem', padding: '1rem'}}>{project.description}</p>
           </div>
           )}
         </div>
