@@ -118,6 +118,7 @@ body {
     margin-top: 0.2rem;
     width: 22rem;
     border-radius: 0.3rem;
+    font-size: 1rem;
 }
 
 .desInp{
@@ -125,6 +126,9 @@ body {
 
 }
 
+.margtop {
+    margin-top: 1rem;
+}
 .projFormBtns {
     margin-top: 1rem;
     display: flex;
@@ -157,4 +161,44 @@ body {
 
 .creatBtn:hover{
     background-color: oklch(62.3% 0.214 259.815);
+}
+
+
+.taskForm {
+    display: flex; 
+    flex-direction: column;
+
+}
+
+.field {
+    /* border: 1px solid salmon; */
+    padding-bottom: 1rem;
+}
+
+.inpField {
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+    width: 23rem;
+}
+
+.userInpfield {
+    border-radius: 0.3rem;
+    border: 1px solid black; 
+    font-size: 0.9rem;
+    width: 22.3rem;
+    padding: 0.3rem;
+}
+
+.leftSide {
+    justify-content: end;
+}
+
+.selInp {
+    width: 98%;
+    padding: 0.2rem;
+    border-radius: 0.2rem; 
+    border: 1px solid black; 
+
+
 }

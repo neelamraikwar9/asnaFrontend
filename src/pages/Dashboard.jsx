@@ -2,15 +2,20 @@ import './dashboard.css';
 import Navbar from '../components/Navbar'
 import axios from 'axios';
 import {useState,  useEffect } from 'react';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [teams, setTeams] = useState([]);
+  const [owners, setOwners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
-  console.log(tasks, "checkign")
-  const [projects, setProjects] = useState([]);
+  // console.log(tasks, "checkign")
 
   const [filProjects, setFilProjects] = useState([]);
   const [filTasks, setFilTasks] = useState([]);
@@ -18,8 +23,122 @@ const Dashboard = () => {
   const [projForm, setProjForm] = useState(false);
   const [taskForm, setTaskForm] = useState(false);
 
-  const [teams, setTeams] = useState([]);
-  const [owners, setOwners] = useState([]);
+  const [pForm, setpForm] = useState({
+    name : '',
+    description : '',
+    technologies: '',
+    status: '',
+  });
+
+function handleProjOnChange(e){
+  const {name, value} = e.target; 
+  setpForm((prev) => ({...prev, [name] : value}));
+}
+
+
+async function handleProjSubmit(e){
+  e.preventDefault();
+
+  console.log(pForm, "checkingpform");
+
+  try{
+  const response = await axios.post('https://asna-backend.vercel.app/projects', JSON.stringify(pForm), {
+    headers: {"Content-Type" : "application/json"}
+
+  });
+  console.log(response.data, "Details added successfully");
+  toast.success("Project Added successfully.");
+
+  setpForm({
+    name : '',
+    description : '',
+    technologies: '',
+    status: '',
+  })
+} catch(error){
+  console.log(error, "Error Submitting Project.")
+
+  if(error.response){
+    console.error("Server error:", error.response.data);
+    console.error("Status:", error.response.status);
+    alert(` Error: ${error.response.data.message || "Failed to add lead"}`);
+  } else if(error.request){
+    console.error("Network error:", error.request);
+    alert("Network error: Please check your internet connection.");
+  }  else {
+        console.error("Error:", error.message);
+        alert(` Error: ${error.message}`);
+      }
+}
+}
+
+
+const [tForm, setTForm] = useState({
+  name: "",
+  project: "",
+  team: "",
+  owners: "",
+  tags: "",
+  timeToComplete: "",
+  status: "",
+  createdAt: ""
+});
+
+
+function handleTaskOnChange(e){
+  const {name, value} = e.target; 
+  setTForm((prev) => ({...prev, [name] : value}))
+}
+
+
+async function handleTaskSubmit(e){
+  e.preventDefault();
+  console.log(tForm, "submitting form...")
+
+  const subTForm = {...tForm, tags: tForm.tags ? [tForm.tags] : [] };
+  console.log(subTForm, "checkignsubtform")
+
+  try{
+    const res = await axios.post("https://asna-backend.vercel.app/tasks", JSON.stringify(subTForm), {
+      headers: {"content-Type" : "application/json"}
+    });
+    console.log(res.data, "Details added successfully");
+    toast.success("Task Added successfully.");
+
+    setTForm({
+      name: "",
+      project: "",
+      team: "",
+      owners: "",
+      tags: "",
+      timeToComplete: "",
+      status: "",
+      createdAt: ""
+    })
+  }  catch(error){
+  console.log(error, "Error Submitting Task.")
+
+  if(error.response){
+    console.error("Server error:", error.response.data);
+    console.error("Status:", error.response.status);
+    alert(` Error: ${error.response.data.message || "Failed to add lead"}`);
+  } else if(error.request){
+    console.error("Network error:", error.request);
+    alert("Network error: Please check your internet connection.");
+  }  else {
+        console.error("Error:", error.message);
+        alert(` Error: ${error.message}`);
+      }
+}
+}
+
+
+
+
+
+
+
+  
 
   async function getTasks(){
   try{
@@ -34,12 +153,17 @@ const Dashboard = () => {
   console.log(resProjs.data);
   setProjects(resProjs.data);
   setFilProjects(resProjs.data);
+  setLoading(false);
+
 
   const resTeam = await axios.get('https://asna-backend.vercel.app/teams');
   setTeams(resTeam.data);
+  setLoading(false);
 
   const resOwner = await axios.get('https://asna-backend.vercel.app/users');
   setOwners(resOwner.data);
+  setLoading(false);
+
  
   
 
@@ -111,26 +235,46 @@ setFilTasks([taskStatus.data]);
 
           {projForm && 
           <div className="modal-overlay">
-          <form className='modal-content'>
+          <form className='modal-content' 
+          onSubmit={handleProjSubmit}
+          >
           <h2>Create New Project</h2>
           
           <div className="fieldCon">
           <div className="projName">
           <label>Project Name</label>
           <br/>
-          <input type="text" placeholder='Enter Project Name' className="inp nameInp"/>
+          <input type="text" placeholder='Enter Project Name' className="inp nameInp" name="name" value={pForm.name} onChange={handleProjOnChange}/>
           </div>
           
           <div className="projDes">
           <label>Project Description</label>
           <br/>
-          <input type="text" placeholder='Enter Project Description' className="inp desInp"/>
+          <input type="text" placeholder='Enter Project Description' className="inp desInp" name="description" value={pForm.description} onChange={handleProjOnChange}/>
           </div>
+
+          <div className="margtop">
+          <label>Technologies</label>
+          <input type="text" placeholder="write technologies included" className="inp nameInp" name="technologies" value={pForm.technologies} onChange={handleProjOnChange}/>
           </div>
+
+          <div className="margtop">
+          <label>Select Status</label>
+          <select className=" selInp" name="status" value={pForm.status} onChange={handleProjOnChange}>
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+            <option value="Blocked">Blocked</option>
+          </select>
+          </div>
+          
+          </div>
+
+          
          
           <div className="projFormBtns">
-            <button className="cBtn cancelBtn">Cancel</button>
-            <button className="cBtn creatBtn">Create</button>
+            <button className="cBtn cancelBtn" onClick={() => setProjForm(false)}>Cancel</button>
+            <button className="cBtn creatBtn" type="submit">Create</button>
           </div>
           </form>
           </div>}
@@ -161,7 +305,7 @@ setFilTasks([taskStatus.data]);
         <div>
 
           <div className="container">
-          <h2 className="headText">My Tasks</h2>
+          <h2 className="headText">Tasks</h2>
           <div className="filCon">
           <label>Filter</label>
           <select className="select" onChange={handleTaskFilter}>
@@ -171,68 +315,90 @@ setFilTasks([taskStatus.data]);
           </select>
           </div>
 
-          <button className="newProjBtn"> + New Task</button>
-
+          <button className="newProjBtn" onClick={() => setTaskForm(true)}> + New Task</button>
+          {taskForm &&  
           <div className="modal-overlay">
             <div className="modal-content">
              <h2>Create New Task</h2>
-            <form>
-            <div>
+            <form className="taskForm" onSubmit={handleTaskSubmit}>
+            <div className="field">
              <label>Select Project</label>
              <br/>
-             <select>
+             <select className="inpField" name="project" value={tForm.project} onChange={handleTaskOnChange}>
+             {loading && <p>projects are loading...</p>}
+             {error && <p style={{color: 'red'}}>{error}</p>}
               {projects.map((project) => 
-              <option key={project._id} value={project.name}>{project.name}</option>
+              <option key={project._id} value={project._id}>{project.name}</option>
               )}
              </select>
              </div>
              
-             <div>
+             <div className="field">
              <label>Task Name</label>
              <br/>
-             <input type="text" placeholder="Enter Task Name"/>
+             <input type="text" placeholder="Enter Task Name" className="userInpfield" name="name" value={tForm.name} onChange={handleTaskOnChange}/>
              </div>
 
-             <div>
+             <div className="field">
              <label>Select Team</label>
              <br/>
-             <select>
+             <select className="inpField" name="team" value={tForm.team} onChange={handleTaskOnChange}>
+             {loading && <p>projects are loading...</p>}
+             {error && <p style={{color: 'red'}}>{error}</p>}
              {teams.map((team) => 
-             <option key={team._id} value={team.name}>{team.name}</option>)}
+             <option key={team._id} value={team._id}>{team.name}</option>)}
              </select>
              </div>
 
-             <div>
+             <div className="field">
               <label>Select Owner</label>
               <br/>
-              <select>
+              <select className="inpField" name="owners" value={tForm.owners} onChange={handleTaskOnChange}>
+              {loading && <p>projects are loading...</p>}
+              {error && <p style={{color: 'red'}}>{error}</p>}
                 {owners.map((owner) => 
-                <option key={owner._id} value={owner.name}>{owner.name}</option>)}
+                <option key={owner._id} value={owner._id}>{owner.name}</option>)}
               </select>
              </div>
 
-             <div>
-              <label>Select Tags</label>
-              <select>
-                {}
-              </select>
+             <div className="field">
+              <label>Select Status</label>
+              <br/>
+          <select className="inpField"  name="status" value={tForm.status} onChange={handleTaskOnChange}>
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+            <option value="Blocked">Blocked</option>
+          </select>
              </div>
 
-             <div>
+             <div className="field">
+              <label>Tags</label>
+              <input type="text" placeholder="Enter Tag Name" className="userInpfield" name="tags" value={tForm.tags} onChange={handleTaskOnChange}/>
+             </div>
+
+             <div className="field">
               <label>Select Due Date</label>
-              <input type="date" placeholder="Select date"/>
+              <input type="date" placeholder="Select date" className="userInpfield" name="createdAt" value={tForm.createdAt} onChange={handleTaskOnChange}/>
              </div>
 
-             <div>
+             <div className="field">
               <label>Estimated Time</label>
-              <input type="number" placeholder="Enter Time in Days."/>
+              <input type="number" placeholder="Enter Time in Days." className="userInpfield" name="timeToComplete" value={tForm.timeToComplete} onChange={handleTaskOnChange}/>
              </div>
 
-             
+              <div className="projFormBtns leftSide">
+            <button className="cBtn cancelBtn" 
+            onClick={() => setTaskForm(false)}
+            >
+            Cancel</button>
+            <button className="cBtn creatBtn" type="submit">Create</button>
+          </div>
             </form>
-
             </div>
           </div>
+          }
+
           </div>
 
           <div className='projsCon'>
