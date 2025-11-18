@@ -45,7 +45,7 @@ useEffect(() => {
 
      <div className="projTasksCon">
         <div>
-          {loading && <p>project name with description is loading...</p>}
+          {loading && <p>Project name with description is Loading...</p>}
           {error && <p style={{color: 'red'}}>{error}</p>}
           {projects.slice(0, 1).map((project) => 
           <div>
@@ -171,18 +171,22 @@ useEffect(() => {
 
         <div className="box">
         <h3 className='tableTitle'>TASKS</h3>
+        <hr className="boxesBorder"/>
         {tasks?.map((task) =>
         <div className="tsk">
-          <p>{task.name}</p>
+          <p className="boxCont">{task.name}</p>
+          <hr className="boxesBorder"/>
         </div>)}
         </div>
         
 
         <div className="box">
         <h3 className='tableTitle'>OWNER</h3>
+        <hr className="boxesBorder"/>
         {tasks.map((task) =>
         <div className="tsk">
-          <p>{task.owners.map((owner) => owner.name)}</p>
+          <p className="boxCont">{task.owners.map((owner) => owner.name)}</p>
+        <hr className="boxesBorder"/>
         </div>)}
         </div>
         
@@ -190,10 +194,12 @@ useEffect(() => {
 
         <div className="box">
         <h3 className='tableTitle'>DUE ON</h3>
+        <hr className="boxesBorder"/>
         {tasks?.map((task) =>
         <div className="tsk">
         {/* <p>{task.createdAt}</p> */}
-    <p>{new Date(task.createdAt).toLocaleDateString()}</p>
+    <p className="boxCont">{new Date(task.createdAt).toLocaleDateString()}</p>
+    <hr className="boxesBorder"/>
         
         </div>)}
         </div>
@@ -201,9 +207,11 @@ useEffect(() => {
           
         <div className="box">
         <h3 className='tableTitle'>STATUS</h3>
+        <hr className="boxesBorder"/>
         {tasks?.map((task) =>
         <div className="tsk">
-          <p>{task.status}</p>
+          <p className="boxCont" style={{backgroundColor: task.status === "Completed" ? "oklch(95% 0.052 163.051)" : task.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(86.9% 0.022 252.894)"}}>{task.status}</p>
+          <hr className="boxesBorder"/>
         </div>)}
         </div>
 
@@ -211,14 +219,13 @@ useEffect(() => {
 
         <div className="box">
         <h3 className='tableTitle'>TimeTo Complete</h3>
+        <hr className="boxesBorder" style={{width:'9.9rem'}}/>
         {tasks?.map((task) =>
         <div className="tsk">
-          <p>{task.timeToComplete} Days</p>
+          <p className="boxCont">{task.timeToComplete} Days</p>
+        <hr className="boxesBorder" style={{width:'9.8rem'}}/>
         </div>)}
         </div>
-
-
-
           </div>
 
 

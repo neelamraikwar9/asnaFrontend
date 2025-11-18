@@ -36,7 +36,7 @@
     display: flex;
     flex-direction: row;
     border: 1px solid green; 
-    height: 5rem;
+    height: 3rem;
 }
 
 
@@ -76,12 +76,12 @@ color: white;
     border: 2px solid rgb(216, 238, 13);
     width: 63rem;
     height: auto;
-    margin-top: 4rem;
+    margin-top: 2rem;
     border-radius: 0.5rem;
 }
 
 .box {
-    border: 1px solid rgb(73, 226, 43);
+    border: 1px solid gray;
     width: 20rem;
     /* height: 14rem; */
     /* padding: 0.rem; */
@@ -91,8 +91,21 @@ color: white;
     /* justify-content: center; */
 }
 
+.boxesBorder{
+    border: 1px solid gray;
+    width: 13rem;
+
+}
+
+.boxCont {
+    padding-left: 1.9rem;
+    margin: 0.2rem 0; 
+}
+
 .tableTitle {
     /* border: 1px solid green; */
     background-color: aliceblue;
+    margin: 0.3rem 0;
+    margin-top: 0.4rem;
   
 }

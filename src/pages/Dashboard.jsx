@@ -22,7 +22,7 @@ const Dashboard = () => {
   const [projForm, setProjForm] = useState(false);
   
 
-  const { tForm, handleTaskOnChange, handleTaskSubmit, taskForm, setTaskForm, teams, setTeams, loading, setLoading, owners, setOwners} = useTaskForm();
+  const { tForm, handleTaskOnChange, handleTaskSubmit, taskForm, setTaskForm, teams, loading, setLoading, owners} = useTaskForm();
 
   const [pForm, setpForm] = useState({
     name : '',
@@ -293,7 +293,7 @@ setFilTasks([taskStatus.data]);
             <div className="projCard"  key={proj._id}>
             
             <p
-            style={{backgroundColor: proj.status === "Completed" ? "oklch(95% 0.052 163.051)" : proj.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(98.5% 0.002 247.839)"}}>
+            style={{backgroundColor: proj.status === "Completed" ? "oklch(95% 0.052 163.051)" : proj.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(86.9% 0.022 252.894)"}}>
             {proj.status}</p>
             <h3>{proj.name}</h3>
             <p style={{fontSize: '0.8rem'}}>{proj.description}</p>
