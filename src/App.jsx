@@ -12,6 +12,7 @@ import Setting from './pages/Setting';
 import { Authprovider } from './AuthContext';
 import { ToastContainer } from 'react-toastify';
 import { TaskFormProvider } from './Context/TaskFormContext';
+import TaskDetail from './pages/TaskDetail';
 
 function App() {
  
@@ -27,6 +28,7 @@ function App() {
         <Route element={<ProtectedRoute />}></Route>
         <Route path="/dashboard" element={<Dashboard/>}></Route>
         <Route path="/project" element={<Project/>}></Route>
+        <Route path="/task/taskId" element={<TaskDetail/>}></Route>
         <Route path="/team" element={<Team/>}></Route>
         <Route path="/report" element={<Report/>}></Route>
         <Route path="/setting" element={<Setting/>}></Route>

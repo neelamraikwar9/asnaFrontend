@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTaskForm } from '../Context/TaskFormContext';
+import { Link } from 'react-router-dom';
+
 
 
 const Project = () => {
@@ -54,6 +56,22 @@ async function handleStatusOnChange(e){
 }
 
 
+function handleSort(e){
+  const sortOpt = e.target.value; 
+
+  if(sortOpt === "Low to High"){ //High to Low
+    // const sortedLowToHigh = tasks.sort(a(tasks.timeToComplete) - b(tasks.timeToComplete));
+    const sortedLowToHigh = tasks.sort((a, b) => a.timeToComplete - b.timeToComplete);
+    console.log(sortedLowToHigh, "sortedLowToHigh");
+    setFilStatus(sortedLowToHigh);
+  } else if (sortOpt === "High to Low"){
+    const sortedHighToLow = tasks.sort((a, b) => b.timeToComplete - a.timeToComplete);
+    console.log(sortedHighToLow, "High to Low");
+    setFilStatus(sortedHighToLow);
+
+  }
+}
+
 
   return (
     <main className="OuterCon">
@@ -77,8 +95,8 @@ async function handleStatusOnChange(e){
         <div className="sortByCon">
           <div className="prioritiesNameCon">
           <label className="">Sort by:</label>
-          <button className="butn">Due Date Low-High</button>
-          <button className="butn">Due Date High-Low</button>
+          <button className="butn" value="Low to High" onClick={handleSort}>TTCom Low-High</button>
+          <button className="butn" value="High to Low" onClick={handleSort}>TTCom High-Low</button>
           </div>
 
 
@@ -192,7 +210,7 @@ async function handleStatusOnChange(e){
         <hr className="boxesBorder"/>
         {filStatus?.map((task) =>
         <div key={task._id} className="tsk">
-          <p className="boxCont">{task.name}</p>
+          <Link to={`/task/${task?._id}`}><p className="boxCont">{task.name}</p></Link>
           <hr className="boxesBorder"/>
         </div>)}
         </div>
