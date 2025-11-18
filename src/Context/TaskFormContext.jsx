@@ -1,13 +1,17 @@
 import { createContext, useContext } from "react";
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const TaskFormContext = createContext();
 
 export const useTaskForm = () => useContext(TaskFormContext);
 
 export const TaskFormProvider = ( { children }) => {
-  
+const [taskForm, setTaskForm] = useState(false); 
+const [teams, setTeams] = useState([]);
+const [owners, setOwners] = useState([]);
+const [loading, setLoading] = useState(true);
 const [tForm, setTForm] = useState({
   name: "",
   project: "",
@@ -68,11 +72,29 @@ async function handleTaskSubmit(e){
 }
 
 
+async function fetchData(){
+  try{
+  const resTeam = await axios.get('https://asna-backend.vercel.app/teams');
+  setTeams(resTeam.data);
+  setLoading(false);
+  
+  const resOwner = await axios.get('https://asna-backend.vercel.app/users');
+  setOwners(resOwner.data);
+  setLoading(false);
+  } catch(error){
+    console.log(error.message, "Error message");
+  } 
+}
+
+
+useEffect(() => {
+    fetchData();
+}, []);
 
 
 
   return (
-    <TaskFormContext value={{ tForm, handleTaskOnChange, handleTaskSubmit}}>
+    <TaskFormContext value={{ tForm, handleTaskOnChange, handleTaskSubmit, taskForm, setTaskForm, teams, setTeams, loading, setLoading, owners, setOwners}}>
         {children}
     </TaskFormContext>
   )

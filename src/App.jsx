@@ -18,8 +18,9 @@ function App() {
 
   return (
     <>
-    <TaskFormProvider>
+    
     <Authprovider>
+    <TaskFormProvider>
      {/* <Navbar/> */}
       <Routes>
         <Route path="/" element={<Login/>}></Route>
@@ -31,8 +32,8 @@ function App() {
         <Route path="/setting" element={<Setting/>}></Route>
       </Routes>
        <ToastContainer />
+       </TaskFormProvider>
       </Authprovider>
-      </TaskFormProvider>
     </>
   )
 }

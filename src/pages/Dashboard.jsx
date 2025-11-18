@@ -12,9 +12,7 @@ import { useTaskForm } from '../Context/TaskFormContext';
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [teams, setTeams] = useState([]);
-  const [owners, setOwners] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   // console.log(tasks, "checkign")
 
@@ -22,9 +20,9 @@ const Dashboard = () => {
   const [filTasks, setFilTasks] = useState([]);
 
   const [projForm, setProjForm] = useState(false);
-  const [taskForm, setTaskForm] = useState(false);
+  
 
-  const { tForm, handleTaskOnChange, handleTaskSubmit} = useTaskForm;
+  const { tForm, handleTaskOnChange, handleTaskSubmit, taskForm, setTaskForm, teams, setTeams, loading, setLoading, owners, setOwners} = useTaskForm();
 
   const [pForm, setpForm] = useState({
     name : '',
@@ -159,13 +157,13 @@ async function handleProjSubmit(e){
   setLoading(false);
 
 
-  const resTeam = await axios.get('https://asna-backend.vercel.app/teams');
-  setTeams(resTeam.data);
-  setLoading(false);
+  // const resTeam = await axios.get('https://asna-backend.vercel.app/teams');
+  // setTeams(resTeam.data);
+  // setLoading(false);
 
-  const resOwner = await axios.get('https://asna-backend.vercel.app/users');
-  setOwners(resOwner.data);
-  setLoading(false);
+  // const resOwner = await axios.get('https://asna-backend.vercel.app/users');
+  // setOwners(resOwner.data);
+  // setLoading(false);
 
  
   
@@ -323,6 +321,7 @@ setFilTasks([taskStatus.data]);
           <div className="projBtnCon">
           <button className="newProjBtn" onClick={() => setTaskForm(true)}> + New Task</button>
           </div>
+
           {taskForm &&  
           <div className="modal-overlay">
             <div className="modal-content">

@@ -2,13 +2,18 @@ import './project.css';
 import Navbar from '../components/Navbar';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useTaskForm } from '../Context/TaskFormContext';
 
 
 const Project = () => {
    
    const [tasks, setTasks] = useState([]);
-  // console.log(tasks, "checkign")
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
+  const {tForm, handleTaskOnChange, handleTaskSubmit, taskForm, setTaskForm, teams, owners} = useTaskForm();
+
+
 
   async function getTasks(){
   try{
@@ -16,10 +21,12 @@ const Project = () => {
   const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
   console.log(resTasks.data);
   setTasks(resTasks.data);
+  setLoading(false);
   console.log(tasks, "checking tasks")
 
   console.log(resProjs.data);
   setProjects(resProjs.data);
+  setLoading(false);
   } catch(error){
     console.log("Error message: ", error.message);
   }
@@ -38,6 +45,8 @@ useEffect(() => {
 
      <div className="projTasksCon">
         <div>
+          {loading && <p>project name with description is loading...</p>}
+          {error && <p style={{color: 'red'}}>{error}</p>}
           {projects.slice(0, 1).map((project) => 
           <div>
             <h2 className="headText">{project.name}</h2>
@@ -58,7 +67,6 @@ useEffect(() => {
             <div className="filCon  filterCon">
           <label className="">Filter</label>
           <select className="select seleBox">
-            {/* <option value=""></option> */}
             <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
             <option value="To Do">To Do</option>
@@ -66,8 +74,92 @@ useEffect(() => {
           </div>
           
           <div className="taskBtnCon">
-          <button className="taskBtn">+ New Task</button>
+          <button className="taskBtn" onClick={() => setTaskForm(true)}>+ New Task</button>
           </div>
+
+          {taskForm &&  
+          <div className="modal-overlay">
+            <div className="modal-content">
+             <h2>Create New Task</h2>
+            <form className="taskForm" onSubmit={handleTaskSubmit}>
+            <div className="field">
+             <label>Select Project</label>
+             <br/>
+             <select className="inpField" name="project" value={tForm?.project} onChange={handleTaskOnChange}>
+             {loading && <p>projects are loading...</p>}
+             {error && <p style={{color: 'red'}}>{error}</p>}
+              {projects.map((project) => 
+              <option key={project._id} value={project._id}>{project.name}</option>
+              )}
+             </select>
+             </div>
+             
+             <div className="field">
+             <label>Task Name</label>
+             <br/>
+             <input type="text" placeholder="Enter Task Name" className="userInpfield" name="name" value={tForm?.name} onChange={handleTaskOnChange}/>
+             </div>
+
+             <div className="field">
+             <label>Select Team</label>
+             <br/>
+             <select className="inpField" name="team" value={tForm?.team} onChange={handleTaskOnChange}>
+             {loading && <p>projects are loading...</p>}
+             {error && <p style={{color: 'red'}}>{error}</p>}
+             {teams.map((team) => 
+             <option key={team._id} value={team._id}>{team.name}</option>)}
+             </select>
+             </div>
+
+             <div className="field">
+              <label>Select Owner</label>
+              <br/>
+              <select className="inpField" name="owners" value={tForm?.owners} onChange={handleTaskOnChange}>
+              {loading && <p>projects are loading...</p>}
+              {error && <p style={{color: 'red'}}>{error}</p>}
+                {owners.map((owner) => 
+                <option key={owner._id} value={owner._id}>{owner.name}</option>)}
+              </select>
+             </div>
+
+             <div className="field">
+              <label>Select Status</label>
+              <br/>
+          <select className="inpField"  name="status" value={tForm?.status} onChange={handleTaskOnChange}>
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+            <option value="Blocked">Blocked</option>
+          </select>
+             </div>
+
+             <div className="field">
+              <label>Tags</label>
+              <input type="text" placeholder="Enter Tag Name" className="userInpfield" name="tags" value={tForm?.tags} onChange={handleTaskOnChange}/>
+             </div>
+
+             <div className="field">
+              <label>Select Due Date</label>
+              <input type="date" placeholder="Select date" className="userInpfield" name="createdAt" value={tForm?.createdAt} onChange={handleTaskOnChange}/>
+             </div>
+
+             <div className="field">
+              <label>Estimated Time</label>
+              <input type="number" placeholder="Enter Time in Days." className="userInpfield" name="timeToComplete" value={tForm?.timeToComplete} onChange={handleTaskOnChange}/>
+             </div>
+
+            <div className="projFormBtns leftSide">
+            <button className="cBtn cancelBtn" 
+            onClick={() => setTaskForm(false)}
+            >
+            Cancel</button>
+            <button className="cBtn creatBtn" type="submit">Create</button>
+          </div>
+            </form>
+            </div>
+          </div>
+          }
+
           </div>
         </div>
 
