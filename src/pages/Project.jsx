@@ -12,6 +12,7 @@ const Project = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const {tForm, handleTaskOnChange, handleTaskSubmit, taskForm, setTaskForm, teams, owners} = useTaskForm();
+  const [filStatus, setFilStatus] = useState([]);
 
 
 
@@ -21,6 +22,7 @@ const Project = () => {
   const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
   console.log(resTasks.data);
   setTasks(resTasks.data);
+  setFilStatus(resTasks.data);
   setLoading(false);
   console.log(tasks, "checking tasks")
 
@@ -37,6 +39,22 @@ useEffect(() => {
 }, [])
 
 
+async function handleStatusOnChange(e){
+  let statusOption = e.target.value; 
+  try{
+    const res = await axios.get(`https://asna-backend.vercel.app/projects/status/${statusOption}`);
+    console.log(res.data, "filterStatus")
+    setFilStatus([res.data]);
+    console.log(filStatus, "checkingfilstatus")
+    // setLoading(false);
+  } catch(error){
+    throw error; 
+  }
+ 
+}
+
+
+
   return (
     <main className="OuterCon">
     <div className="navbar">
@@ -48,7 +66,7 @@ useEffect(() => {
           {loading && <p>Project name with description is Loading...</p>}
           {error && <p style={{color: 'red'}}>{error}</p>}
           {projects.slice(0, 1).map((project) => 
-          <div>
+          <div key={project._id}>
             <h2 className="headText">{project.name}</h2>
             <p style={{fontSize:'1rem', padding: '1rem 0'}}>{project.description}</p>
           </div>
@@ -66,7 +84,7 @@ useEffect(() => {
 
             <div className="filCon  filterCon">
           <label className="">Filter</label>
-          <select className="select seleBox">
+          <select className="select seleBox" onChange={handleStatusOnChange}>
             <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
             <option value="To Do">To Do</option>
@@ -125,7 +143,7 @@ useEffect(() => {
              <div className="field">
               <label>Select Status</label>
               <br/>
-          <select className="inpField"  name="status" value={tForm?.status} onChange={handleTaskOnChange}>
+          <select className="inpField" name="status" value={tForm.status} onChange={handleTaskOnChange}>
             <option value="To Do">To Do</option>
             <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
@@ -172,8 +190,8 @@ useEffect(() => {
         <div className="box">
         <h3 className='tableTitle'>TASKS</h3>
         <hr className="boxesBorder"/>
-        {tasks?.map((task) =>
-        <div className="tsk">
+        {filStatus?.map((task) =>
+        <div key={task._id} className="tsk">
           <p className="boxCont">{task.name}</p>
           <hr className="boxesBorder"/>
         </div>)}
@@ -183,9 +201,9 @@ useEffect(() => {
         <div className="box">
         <h3 className='tableTitle'>OWNER</h3>
         <hr className="boxesBorder"/>
-        {tasks.map((task) =>
-        <div className="tsk">
-          <p className="boxCont">{task.owners.map((owner) => owner.name)}</p>
+        {filStatus?.map((task) =>
+        <div key={task._id} className="tsk">
+          <p className="boxCont">{task.owners?.map((owner) => owner.name)}</p>
         <hr className="boxesBorder"/>
         </div>)}
         </div>
@@ -195,8 +213,8 @@ useEffect(() => {
         <div className="box">
         <h3 className='tableTitle'>DUE ON</h3>
         <hr className="boxesBorder"/>
-        {tasks?.map((task) =>
-        <div className="tsk">
+        {filStatus?.map((task) =>
+        <div key={task._id} className="tsk">
         {/* <p>{task.createdAt}</p> */}
     <p className="boxCont">{new Date(task.createdAt).toLocaleDateString()}</p>
     <hr className="boxesBorder"/>
@@ -208,8 +226,8 @@ useEffect(() => {
         <div className="box">
         <h3 className='tableTitle'>STATUS</h3>
         <hr className="boxesBorder"/>
-        {tasks?.map((task) =>
-        <div className="tsk">
+        {filStatus?.map((task) =>
+        <div key={task._id} className="tsk">
           <p className="boxCont" style={{backgroundColor: task.status === "Completed" ? "oklch(95% 0.052 163.051)" : task.status === "In Progress" ? "oklch(97.3% 0.071 103.193)" : "oklch(86.9% 0.022 252.894)"}}>{task.status}</p>
           <hr className="boxesBorder"/>
         </div>)}
@@ -220,8 +238,8 @@ useEffect(() => {
         <div className="box">
         <h3 className='tableTitle'>TimeTo Complete</h3>
         <hr className="boxesBorder" style={{width:'9.9rem'}}/>
-        {tasks?.map((task) =>
-        <div className="tsk">
+        {filStatus?.map((task) =>
+        <div key={task._id} className="tsk">
           <p className="boxCont">{task.timeToComplete} Days</p>
         <hr className="boxesBorder" style={{width:'9.8rem'}}/>
         </div>)}
