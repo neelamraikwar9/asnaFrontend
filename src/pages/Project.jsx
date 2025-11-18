@@ -40,25 +40,23 @@ useEffect(() => {
         <div>
           {projects.slice(0, 1).map((project) => 
           <div>
-            <h1 className="headText">{project.name}</h1>
-            <p style={{fontSize:'1rem', padding: '1rem'}}>{project.description}</p>
+            <h2 className="headText">{project.name}</h2>
+            <p style={{fontSize:'1rem', padding: '1rem 0'}}>{project.description}</p>
           </div>
           )}
         </div>
 
         <div className="sortFilContainer">
         <div className="sortByCon">
-          <label className="text">Sort by:</label>
           <div className="prioritiesNameCon">
-          <button className="butn">Priority Low-High</button>
-          <button className="butn">Priority High-Low</button>
-          <button className="butn">Newest First</button>
-          <button className="butn">Oldest First</button>
+          <label className="">Sort by:</label>
+          <button className="butn">Due Date Low-High</button>
+          <button className="butn">Due Date High-Low</button>
           </div>
 
 
             <div className="filCon  filterCon">
-          <label className="text">Filter</label>
+          <label className="">Filter</label>
           <select className="select seleBox">
             {/* <option value=""></option> */}
             <option value="In Progress">In Progress</option>

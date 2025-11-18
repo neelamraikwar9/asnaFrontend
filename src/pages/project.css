@@ -1,22 +1,22 @@
 .sortByCon {
     border: 1px solid salmon;
-    /* width:65rem; */
+    width:62.9rem;
     height:2rem;
     display: flex;
-    gap: 0.5rem;
-    margin-top: 4rem;
+    gap: 8rem;
+    margin-top: 1rem;
 
 }
 
 .prioritiesNameCon {
     display: flex;
     gap: 1rem;
-    width: 40rem;
+    /* width: 40rem; */
 }
 
 .butn {
-    border-radius: 0.5rem;
-    font-size: large;
+    border-radius: 0.4rem;
+    font-size: small;
     
 }
 
@@ -27,10 +27,8 @@
 
 .filterCon {
     margin-top: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-left: 10rem;
-
+    
+   
 }
 
 
@@ -38,7 +36,7 @@
     display: flex;
     flex-direction: row;
     border: 1px solid green; 
-    height: 6rem;
+    height: 5rem;
 }
 
 
@@ -52,7 +50,7 @@
 }
 
 .taskBtnCon {
-    padding-left: 4rem;
+    padding-left: 0;
 }
 
 .taskBtn {
@@ -67,8 +65,8 @@
 .tasksInfoTable {
     display: flex;
     border: 2px solid rgb(216, 238, 13);
-    width: 82.6rem;
-    height: 17rem;
+    width: 63rem;
+    height: auto;
     margin-top: 4rem;
     border-radius: 0.5rem;
 }
