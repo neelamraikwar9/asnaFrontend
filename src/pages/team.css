@@ -47,8 +47,14 @@
 }
 
 .teamBtn {
-    width: 10rem; 
-    height: 2rem;
+    width: 8rem; 
+    height: 2rem;   
     border-radius: 0.3rem;
     margin-top: 3.2rem;
+    background-color: oklch(48.8% 0.243 264.376);
+    color: white; 
+}
+
+.teamBtn:hover {
+    background-color: oklch(54.6% 0.245 262.881);
 }

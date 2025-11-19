@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Project = () => {
   const [tasks, setTasks] = useState([]);
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const {
@@ -18,24 +18,25 @@ const Project = () => {
     setTaskForm,
     teams,
     owners,
+    projects
   } = useTaskForm();
   const [filStatus, setFilStatus] = useState([]);
 
   async function getTasks() {
     try {
       const resTasks = await axios.get("https://asna-backend.vercel.app/tasks");
-      const resProjs = await axios.get(
-        "https://asna-backend.vercel.app/projects"
-      );
+      // const resProjs = await axios.get(
+      //   "https://asna-backend.vercel.app/projects"
+      // );
       console.log(resTasks.data);
       setTasks(resTasks.data);
       setFilStatus(resTasks.data);
       setLoading(false);
       console.log(tasks, "checking tasks");
 
-      console.log(resProjs.data);
-      setProjects(resProjs.data);
-      setLoading(false);
+      // console.log(resProjs.data);
+      // setProjects(resProjs.data);
+      // setLoading(false);
     } catch (error) {
       console.log("Error message: ", error.message);
     }
