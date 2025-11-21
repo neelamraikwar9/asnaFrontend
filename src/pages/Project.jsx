@@ -12,15 +12,18 @@ const Project = () => {
   const [error, setError] = useState();
   const {
     tForm,
+    setTForm,
     handleTaskOnChange,
     handleTaskSubmit,
     taskForm,
     setTaskForm,
     teams,
     owners,
-    projects
+    projects,
   } = useTaskForm();
   const [filStatus, setFilStatus] = useState([]);
+  const [filSort, setFilSort] = useState([]);
+  console.log(filSort, "filsort");
 
   async function getTasks() {
     try {
@@ -30,9 +33,11 @@ const Project = () => {
       // );
       console.log(resTasks.data);
       setTasks(resTasks.data);
+      // setTForm(resTasks.data);
       setFilStatus(resTasks.data);
       setLoading(false);
       console.log(tasks, "checking tasks");
+     
 
       // console.log(resProjs.data);
       // setProjects(resProjs.data);
@@ -50,11 +55,13 @@ const Project = () => {
     let statusOption = e.target.value;
     try {
       const res = await axios.get(
-        `https://asna-backend.vercel.app/projects/status/${statusOption}`
+        `https://asna-backend.vercel.app/tasks/byStatus/${statusOption}`
       );
       console.log(res.data, "filterStatus");
-      setFilStatus([res.data]);
+      setFilStatus(res.data);
       console.log(filStatus, "checkingfilstatus");
+
+      setTForm()
       // setLoading(false);
     } catch (error) {
       throw error;
@@ -66,18 +73,19 @@ const Project = () => {
 
     if (sortOpt === "Low to High") {
       //High to Low
-      // const sortedLowToHigh = tasks.sort(a(tasks.timeToComplete) - b(tasks.timeToComplete));
       const sortedLowToHigh = tasks.sort(
         (a, b) => a.timeToComplete - b.timeToComplete
       );
       console.log(sortedLowToHigh, "sortedLowToHigh");
-      setFilStatus(sortedLowToHigh);
+      // setFilSort([sortedLowToHigh]);
+      setFilStatus(sortedLowToHigh)
     } else if (sortOpt === "High to Low") {
       const sortedHighToLow = tasks.sort(
         (a, b) => b.timeToComplete - a.timeToComplete
       );
       console.log(sortedHighToLow, "High to Low");
-      setFilStatus(sortedHighToLow);
+      setFilSort([sortedHighToLow]);
+      setFilStatus(sortedHighToLow)
     }
   }
 
@@ -117,16 +125,20 @@ const Project = () => {
           <div className="sortByCon">
             <div className="prioritiesNameCon">
               <label className="">Sort by:</label>
-              <button className="butn" value="Low to High" onClick={handleSort}>
+              <button className="butn" value="Low to High" 
+               onClick={handleSort}
+              >
                 TTCom Low-High
               </button>
-              <button className="butn" value="High to Low" onClick={handleSort}>
+              <button className="butn" value="High to Low" 
+               onClick={handleSort}
+              >
                 TTCom High-Low
               </button>
             </div>
 
             <div className="filCon  filterCon">
-              <label className="">Filter</label>
+              <label>Filter</label>
               <select
                 className="select seleBox"
                 onChange={handleStatusOnChange}
@@ -290,11 +302,10 @@ const Project = () => {
 
         <div className="tasksInfoTable">
           <div className="box">
-    
             <h3 className="tableTitle">TASKS</h3>
             <hr className="boxesBorder" />
             {loading && <p>Task Table is Loading...</p>}
-           {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
             {filStatus?.map((task) => (
               <div key={task._id} className="tsk">
                 <Link to={`/task/${task?._id}`}>
@@ -308,14 +319,21 @@ const Project = () => {
           <div className="box">
             <h3 className="tableTitle">OWNER</h3>
             <hr className="boxesBorder" />
-            {filStatus?.map((task) => (
-              <div key={task._id} className="tsk">
-                <p className="boxCont">
-                  {task.owners?.map((owner) => owner.name)}
-                </p>
+            {filStatus?.map((task) =>
+            {
+              console.log(task,'sjdfiowejifwoe')
+              return (
+              
+              <div key={task._id} className="tsk" style={{paddingBottom: ' ',  margin: '0'}}>
+                <div className="boxCont">
+                  {task?.owners?.map((owner) =>( 
+                 <p className="boxCont">{owner.name}</p> 
+                  ))}
+                </div>
                 <hr className="boxesBorder" />
               </div>
-            ))}
+            )}
+            )}
           </div>
 
           <div className="box">
@@ -358,12 +376,17 @@ const Project = () => {
           <div className="box">
             <h3 className="tableTitle">Time To Complete</h3>
             <hr className="boxesBorder" style={{ width: "9.9rem" }} />
-            {filStatus?.map((task) => (
+            {filStatus?.map((task) => 
+           {
+            console.log(task,'fmoiosdifjie')
+            return (
+
               <div key={task._id} className="tsk">
                 <p className="boxCont">{task.timeToComplete} Days</p>
                 <hr className="boxesBorder" style={{ width: "9.8rem" }} />
               </div>
-            ))}
+            )}
+            )}
           </div>
         </div>
       </div>

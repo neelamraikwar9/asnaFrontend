@@ -57,6 +57,10 @@ export const TaskFormProvider = ({ children }) => {
         status: "",
         createdAt: "",
       });
+
+      setTaskForm(false);
+
+      
     } catch (error) {
       console.log(error, "Error Submitting Task.");
 
@@ -103,6 +107,7 @@ export const TaskFormProvider = ({ children }) => {
     <TaskFormContext
       value={{
         tForm,
+        // setTForm,
         handleTaskOnChange,
         handleTaskSubmit,
         taskForm,

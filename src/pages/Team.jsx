@@ -108,17 +108,17 @@ const Team = () => {
   } catch(error) {
     console.log("Error message: ", error.message);
 
-    if (error.response) {
-      console.error("Server error:", error.response.data);
-      console.error("Status:", error.response.status);
-      alert(` Error: ${error.response.data.message || "Failed to add Team"}`);
-    } else if (error.request) {
-      console.error("Network error:", error.request);
-      alert("Network error: Please check your internet connection.");
-    } else {
-      console.error("Error:", error.message);
-      alert(` Error: ${error.message}`);
-    }
+    // if (error.response) {
+    //   console.error("Server error:", error.response.data);
+    //   console.error("Status:", error.response.status);
+    //   alert(` Error: ${error.response.data.message || "Failed to add Team"}`);
+    // } else if (error.request) {
+    //   console.error("Network error:", error.request);
+    //   alert("Network error: Please check your internet connection.");
+    // } else {
+    //   console.error("Error:", error.message);
+    //   alert(` Error: ${error.message}`);
+    // }
   }
 }
 
