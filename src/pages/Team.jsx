@@ -20,7 +20,7 @@ const Team = () => {
       setTeams(res.data);
       setLoading(false);
       console.log(res.data, "checking memd");
-      console.log(Array.isArray(teams)); // should be true;
+      // console.log(Array.isArray(teams)); // should be true;
 
       const resMember = await axios.get("https://asna-backend.vercel.app/users");
       console.log(resMember.data);
@@ -37,7 +37,9 @@ const Team = () => {
 
   const [temForm, setTemForm] = useState({
     name : "",
-    member: "",
+    member1: "",
+    member2: "",
+    member3: "",
     description: ""
   });
 
@@ -92,19 +94,38 @@ const Team = () => {
   console.log(teamForm, "Detail is adding");
 
   try {
-    const res = await axios.post(
-      "https://asna-backend.vercel.app/teams",
-      JSON.stringify(teamForm),
-      {
-        headers: { "Content-Type": "application/json" }
-      }
-    );
-    toast.success("Team Added successfully.");
+    console.log(teamForm, "teamForm")
+    const response = await axios.post("https://asna-backend.vercel.app/teams", JSON.stringify(teamForm), {
+      headers: { "content-Type" : "application/json"},
+    });
+    console.log(response.data, "Details added successfully")
+    toast.success("Task Added successfully.");
+
+
+
+
+
+
+
+  //   const res = await axios.post(
+  //     "https://asna-backend.vercel.app/teams",
+  //     JSON.stringify(teamForm),
+  //     {
+  //       headers: { "Content-Type": "application/json" }
+  //     }
+  //   );
+  // console.log(res.data, "Details added successfully");
+  //   toast.success("Team Added successfully.");
+
     setTemForm({
       name: "",
-      member: "",
+      member1: "",
+      member2: "",
+      member3: "",
       description: ""
     });
+    setTeamForm(false);
+
   } catch(error) {
     console.log("Error message: ", error.message);
 
@@ -123,6 +144,12 @@ const Team = () => {
 }
 
 
+
+
+
+
+
+
   return (
     <main className="OuterCon">
       <div className="navbar">
@@ -139,7 +166,9 @@ const Team = () => {
             <div className="modal-overlay">
               <div className="modal-content">
                 <h2>Create New Team</h2>
-                <form className="taskForm" onSubmit={handleTeamSubmit}>
+                <form onSubmit
+                ={handleTeamSubmit} 
+                className="taskForm" >
                   <div className="field">
                     <label>Team Name</label>
                     <br />
@@ -153,11 +182,54 @@ const Team = () => {
                     />
                   </div>
 
-                  <div className="field">
+                  {/* <div className="field">
                     <label>Select Team Member </label>
                     <select className="userInpfield" placeholder="Select Team Member" name="member" value={temForm.member} onChange={handleTeamOnChange}>
                     {members.map((member) => <option key={member._id} value={member._id}>{member.name}</option>)}
                     </select>
+                  </div> */}
+
+                  {/* <div className="field">
+                    <label>Description(Optional)</label>
+                    <br/>
+                    <input type="text" className="userInpfield" placeholder="Write Description..." name="description" value={temForm.description} onChange={handleTeamOnChange}/>
+                  </div> */}
+
+                  <div className="field">
+                    <label>Add Members</label>
+
+                    <div className="nameInp">
+                    <input type='text'
+                      className="inpField"
+                      placeholder="Member One Name"
+                      name="member1"
+                      value={temForm.member1}
+                      onChange={handleTeamOnChange}
+                    />
+                    
+                    </div> 
+                    <br/>
+                    
+                    <div className="nameInp">
+                    <input type='text'
+                      className="inpField"
+                      placeholder="Member Two Name"
+                      name="member2"
+                      value={temForm.member2}
+                      onChange={handleTeamOnChange}
+                    />
+                    </div>
+                    <br/>
+
+                    <div className="nameInp">  
+                    <input type='text'
+                      className="inpField"
+                      placeholder="Member Three Name"
+                      name="member3"
+                      value={temForm.member3}
+                      onChange={handleTeamOnChange}
+                    /> 
+                    </div> 
                   </div>
 
                   <div className="field">
@@ -165,37 +237,6 @@ const Team = () => {
                     <br/>
                     <input type="text" className="userInpfield" placeholder="Write Description..." name="description" value={temForm.description} onChange={handleTeamOnChange}/>
                   </div>
-
-                  {/* <div className="field">
-                    <label>Add Members</label>
-                    <input type='text'
-                      className="inpField"
-                      placeholder="Member Name"
-                      name="member1"
-                      value={temForm.member1}
-                      onChange={handleTeamOnChange}
-
-                    />
-                    <br/>
-
-                    <input type='text'
-                      className="inpField"
-                      placeholder="Member Name"
-                      name="member2"
-                      value={temForm.member2}
-                      onChange={handleTeamOnChange}
-                    />
-                    <br/>
-
-                    <input type='text'
-                      className="inpField"
-                      placeholder="Member Name"
-                      name="member3"
-                      value={temForm.member3}
-                      onChange={handleTeamOnChange}
-                    /> 
-                    
-                  </div> */}
 
                     
 
@@ -217,24 +258,34 @@ const Team = () => {
         </div>
         <div className="cardCon">
           {loading && <p>Teams are Loading...</p>}
-          {teams.slice(2).map((team) => (
-            <div key={team._id} className="teamCard">
-              <p>
-                <strong>{team.name}</strong>
-              </p>
-              <div key={team._id} className="userProf">
-                {team.member.map((mem) => (
-                  <p key={mem._id} className="prof">
-                    {mem.name.charAt(0).toUpperCase()}
-                  </p>
-                ))}
-              </div>
+          {error && <p style={{color: 'red'}}>{error.message}</p>}
 
-              <p>
+          {teams.map((team) => (
+
+            <div key={team._id} className="teamCard">
+              <p><strong>{team.name}</strong></p>
+
+              <div key={team._id} className="userProf">
+    
+                  <p className="prof">
+                    {team.member1.charAt(0).toUpperCase()}
+                  </p>
+                  <p className="prof">
+                    {team.member2.charAt(0).toUpperCase()}
+                  </p>
+                  <p className="prof">
+                    {team.member3.charAt(0).toUpperCase()}
+                  </p>
+              </div>
+              <br/>
+
+              <div>
                 <strong>Team Members:</strong>{" "}
-                {team.member.map((mem) => mem.name).join(", ")}
-              </p>
+                <p>{team.member1}, {team.member2}, {team.member3}</p>
+              </div>
             </div>
+
+            
           ))}
         </div>
       </div>

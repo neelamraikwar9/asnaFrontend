@@ -56,6 +56,9 @@ async function handleProjSubmit(e){
     technologies: '',
     status: '',
   })
+
+  setProjForm(false);
+  fetchProjects();
 } catch(error){
   console.log(error, "Error Submitting Project.")
 
@@ -133,6 +136,22 @@ async function handleProjSubmit(e){
 // }
 // }
 
+async function fetchProjects(){
+  try{
+  const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
+  console.log(resProjs.data);
+  setProjects(resProjs.data);
+  setFilProjects(resProjs.data);
+  setLoading(false);
+  } catch(error){
+    console.log(error);
+  }
+}
+
+
+useEffect(() => {
+  fetchProjects();
+}, [])
 
 
 
@@ -150,11 +169,11 @@ async function handleProjSubmit(e){
   console.log(tasks, "checking tasks");
   setLoading(false);
 
-  const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
-  console.log(resProjs.data);
-  setProjects(resProjs.data);
-  setFilProjects(resProjs.data);
-  setLoading(false);
+  // const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
+  // console.log(resProjs.data);
+  // setProjects(resProjs.data);
+  // setFilProjects(resProjs.data);
+  // setLoading(false);
 
 
   // const resTeam = await axios.get('https://asna-backend.vercel.app/teams');

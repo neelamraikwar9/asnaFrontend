@@ -13,6 +13,9 @@ export const TaskFormProvider = ({ children }) => {
   const [owners, setOwners] = useState([]);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [tasks, setTasks] = useState([]);
+  const [filStatus, setFilStatus] = useState([]);
+
   const [tForm, setTForm] = useState({
     name: "",
     project: "",
@@ -59,6 +62,7 @@ export const TaskFormProvider = ({ children }) => {
       });
 
       setTaskForm(false);
+      getTasks();
 
       
     } catch (error) {
@@ -103,11 +107,30 @@ export const TaskFormProvider = ({ children }) => {
     fetchData();
   }, []);
 
+
+  async function getTasks() {
+    try {
+      const resTasks = await axios.get("https://asna-backend.vercel.app/tasks");
+      console.log(resTasks.data);
+      setTasks(resTasks.data);
+      console.log(tasks, "checking tasks... ")
+      
+      setFilStatus(resTasks.data);
+      setLoading(false);
+      console.log(tasks, "checking tasks");
+    } catch (error) {
+      console.log("Error message: ", error.message);
+    }
+  }
+
+  useEffect(() => {
+    getTasks();
+  }, []);
+
   return (
     <TaskFormContext
       value={{
         tForm,
-        // setTForm,
         handleTaskOnChange,
         handleTaskSubmit,
         taskForm,
@@ -119,7 +142,11 @@ export const TaskFormProvider = ({ children }) => {
         owners,
         setOwners,
         projects, 
-        setProjects
+        setProjects,
+        getTasks,
+        tasks,
+        filStatus,
+        setFilStatus
       }}
     >
       {children}

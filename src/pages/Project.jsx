@@ -6,13 +6,12 @@ import { useTaskForm } from "../Context/TaskFormContext";
 import { Link } from "react-router-dom";
 
 const Project = () => {
-  const [tasks, setTasks] = useState([]);
+  // const [tasks, setTasks] = useState([]);
   // const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const {
     tForm,
-    setTForm,
     handleTaskOnChange,
     handleTaskSubmit,
     taskForm,
@@ -20,36 +19,35 @@ const Project = () => {
     teams,
     owners,
     projects,
+    tasks,
+    filStatus,
+    setFilStatus,
+    loading,
+    setLoading
+    
   } = useTaskForm();
-  const [filStatus, setFilStatus] = useState([]);
+  // const [filStatus, setFilStatus] = useState([]);
   const [filSort, setFilSort] = useState([]);
   console.log(filSort, "filsort");
 
-  async function getTasks() {
-    try {
-      const resTasks = await axios.get("https://asna-backend.vercel.app/tasks");
-      // const resProjs = await axios.get(
-      //   "https://asna-backend.vercel.app/projects"
-      // );
-      console.log(resTasks.data);
-      setTasks(resTasks.data);
-      // setTForm(resTasks.data);
-      setFilStatus(resTasks.data);
-      setLoading(false);
-      console.log(tasks, "checking tasks");
-     
+  // async function getTasks() {
+  //   try {
+  //     const resTasks = await axios.get("https://asna-backend.vercel.app/tasks");
+  //     console.log(resTasks.data);
+  //     setTasks(resTasks.data);
+  //     console.log(tasks, "checking tasks... ")
+      
+  //     setFilStatus(resTasks.data);
+  //     setLoading(false);
+  //     console.log(tasks, "checking tasks");
+  //   } catch (error) {
+  //     console.log("Error message: ", error.message);
+  //   }
+  // }
 
-      // console.log(resProjs.data);
-      // setProjects(resProjs.data);
-      // setLoading(false);
-    } catch (error) {
-      console.log("Error message: ", error.message);
-    }
-  }
-
-  useEffect(() => {
-    getTasks();
-  }, []);
+  // useEffect(() => {
+  //   getTasks();
+  // }, []);
 
   async function handleStatusOnChange(e) {
     let statusOption = e.target.value;
@@ -60,9 +58,7 @@ const Project = () => {
       console.log(res.data, "filterStatus");
       setFilStatus(res.data);
       console.log(filStatus, "checkingfilstatus");
-
-      setTForm()
-      // setLoading(false);
+      setLoading(false);
     } catch (error) {
       throw error;
     }
@@ -77,7 +73,7 @@ const Project = () => {
         (a, b) => a.timeToComplete - b.timeToComplete
       );
       console.log(sortedLowToHigh, "sortedLowToHigh");
-      // setFilSort([sortedLowToHigh]);
+      setFilSort([sortedLowToHigh]);
       setFilStatus(sortedLowToHigh)
     } else if (sortOpt === "High to Low") {
       const sortedHighToLow = tasks.sort(
