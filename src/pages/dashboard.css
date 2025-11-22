@@ -189,6 +189,10 @@ body {
     padding-bottom: 1rem;
 }
 
+.remSpace {
+    padding-bottom: 0.2rem;
+}
+
 .inpField {
     padding: 0.3rem;
     border-radius: 0.3rem;

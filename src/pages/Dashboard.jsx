@@ -389,7 +389,7 @@ const Dashboard = () => {
                 <div className="modal-content" style={{padding: '0.4rem', }}>
                   <h2 style={{margin:0.9}}>Create New Task</h2>
                   <form className="taskForm" onSubmit={handleTaskSubmit}>
-                    <div className="field">
+                    <div className="field remSpace">
                       <label>Select Project</label>
                       <br />
                       <select
@@ -408,7 +408,7 @@ const Dashboard = () => {
                       </select>
                     </div>
 
-                    <div className="field">
+                    <div className="field remSpace">
                       <label>Task Name</label>
                       <br />
                       <input
@@ -421,7 +421,7 @@ const Dashboard = () => {
                       />
                     </div>
 
-                    <div className="field">
+                    <div className="field remSpace">
                       <label>Select Team</label>
                       <br />
                       <select
@@ -440,7 +440,7 @@ const Dashboard = () => {
                       </select>
                     </div>
 
-                    <div className="field">
+                    <div className="field remSpace">
                       <label>Select Owner</label>
                       <br />
                       <select
@@ -459,11 +459,11 @@ const Dashboard = () => {
                       </select>
                     </div>
 
-                    <div className="field">
+                    <div className="field remSpace">
                       <label>Select Status</label>
                       <br />
                       <select
-                        className="inpField"
+                        className="inpField remSpace"
                         name="status"
                         value={tForm?.status}
                         onChange={handleTaskOnChange}
@@ -475,7 +475,7 @@ const Dashboard = () => {
                       </select>
                     </div>
 
-                    <div className="field">
+                    <div className="field remSpace">
                       <label>Tags</label>
                       <input
                         type="text"
@@ -487,7 +487,7 @@ const Dashboard = () => {
                       />
                     </div>
 
-                    <div className="field">
+                    <div className="field remSpace">
                       <label>Select Due Date</label>
                       <input
                         type="date"
@@ -499,7 +499,7 @@ const Dashboard = () => {
                       />
                     </div>
 
-                    <div className="field">
+                    <div className="field remSpace">
                       <label>Estimated Time</label>
                       <input
                         type="number"
