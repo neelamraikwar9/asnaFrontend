@@ -111,6 +111,7 @@ body {
     box-shadow: 0 2px 24px rgba(0, 0, 0, 0.24);
     min-width: 320px;
     max-width: 90vw;
+    /* height: 45rem; */
 }
 
 .fieldCon {

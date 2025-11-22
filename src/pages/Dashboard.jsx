@@ -386,8 +386,8 @@ const Dashboard = () => {
 
             {taskForm && (
               <div className="modal-overlay">
-                <div className="modal-content">
-                  <h2>Create New Task</h2>
+                <div className="modal-content" style={{padding: '0.4rem', }}>
+                  <h2 style={{margin:0.9}}>Create New Task</h2>
                   <form className="taskForm" onSubmit={handleTaskSubmit}>
                     <div className="field">
                       <label>Select Project</label>
