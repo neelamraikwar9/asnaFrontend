@@ -186,7 +186,7 @@ body {
 
 .field {
     /* border: 1px solid salmon; */
-    padding-bottom: 1rem;
+    padding-bottom: 0.2rem;
 }
 
 .remSpace {
@@ -217,6 +217,12 @@ body {
     padding: 0.2rem;
     border-radius: 0.2rem;
     border: 1px solid black;
+}
 
+.createTskTitle {
+    margin: 0rem; 
+}
 
+.modConPadding {
+    padding: 0.3rem
 }
