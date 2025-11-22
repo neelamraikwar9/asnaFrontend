@@ -23,8 +23,7 @@ const Project = () => {
     filStatus,
     setFilStatus,
     loading,
-    setLoading
-    
+    setLoading,
   } = useTaskForm();
   // const [filStatus, setFilStatus] = useState([]);
   const [filSort, setFilSort] = useState([]);
@@ -36,7 +35,7 @@ const Project = () => {
   //     console.log(resTasks.data);
   //     setTasks(resTasks.data);
   //     console.log(tasks, "checking tasks... ")
-      
+
   //     setFilStatus(resTasks.data);
   //     setLoading(false);
   //     console.log(tasks, "checking tasks");
@@ -74,14 +73,14 @@ const Project = () => {
       );
       console.log(sortedLowToHigh, "sortedLowToHigh");
       setFilSort([sortedLowToHigh]);
-      setFilStatus(sortedLowToHigh)
+      setFilStatus(sortedLowToHigh);
     } else if (sortOpt === "High to Low") {
       const sortedHighToLow = tasks.sort(
         (a, b) => b.timeToComplete - a.timeToComplete
       );
       console.log(sortedHighToLow, "High to Low");
       setFilSort([sortedHighToLow]);
-      setFilStatus(sortedHighToLow)
+      setFilStatus(sortedHighToLow);
     }
   }
 
@@ -121,14 +120,10 @@ const Project = () => {
           <div className="sortByCon">
             <div className="prioritiesNameCon">
               <label className="">Sort by:</label>
-              <button className="butn" value="Low to High" 
-               onClick={handleSort}
-              >
+              <button className="butn" value="Low to High" onClick={handleSort}>
                 TTCom Low-High
               </button>
-              <button className="butn" value="High to Low" 
-               onClick={handleSort}
-              >
+              <button className="butn" value="High to Low" onClick={handleSort}>
                 TTCom High-Low
               </button>
             </div>
@@ -315,21 +310,23 @@ const Project = () => {
           <div className="box">
             <h3 className="tableTitle">OWNER</h3>
             <hr className="boxesBorder" />
-            {filStatus?.map((task) =>
-            {
-              console.log(task,'sjdfiowejifwoe')
+            {filStatus?.map((task) => {
+              console.log(task, "sjdfiowejifwoe");
               return (
-              
-              <div key={task._id} className="tsk" style={{paddingBottom: ' ',  margin: '0'}}>
-                <div className="boxCont">
-                  {task?.owners?.map((owner) =>( 
-                 <p className="boxCont">{owner.name}</p> 
-                  ))}
+                <div
+                  key={task._id}
+                  className="tsk"
+                  style={{ paddingBottom: " ", margin: "0" }}
+                >
+                  <div className="boxCont">
+                    {task?.owners?.map((owner) => (
+                      <p className="boxCont">{owner.name}</p>
+                    ))}
+                  </div>
+                  <hr className="boxesBorder" />
                 </div>
-                <hr className="boxesBorder" />
-              </div>
-            )}
-            )}
+              );
+            })}
           </div>
 
           <div className="box">
@@ -372,17 +369,15 @@ const Project = () => {
           <div className="box">
             <h3 className="tableTitle">Time To Complete</h3>
             <hr className="boxesBorder" style={{ width: "9.9rem" }} />
-            {filStatus?.map((task) => 
-           {
-            console.log(task,'fmoiosdifjie')
-            return (
-
-              <div key={task._id} className="tsk">
-                <p className="boxCont">{task.timeToComplete} Days</p>
-                <hr className="boxesBorder" style={{ width: "9.8rem" }} />
-              </div>
-            )}
-            )}
+            {filStatus?.map((task) => {
+              console.log(task, "fmoiosdifjie");
+              return (
+                <div key={task._id} className="tsk">
+                  <p className="boxCont">{task.timeToComplete} Days</p>
+                  <hr className="boxesBorder" style={{ width: "9.8rem" }} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

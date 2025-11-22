@@ -8,14 +8,14 @@
     background-color: antiquewhite;
     width: 25rem;
     padding: 1rem;
-    height:auto;
+    height: auto;
     border-radius: 0.8rem;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .taskCont {
-    display: flex; 
+    display: flex;
     justify-content: center;
 }

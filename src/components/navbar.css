@@ -11,10 +11,10 @@
     background-color: oklch(94.3% 0.029 294.588);
     width: 15rem;
     height: auto;
-    
+
     /* display: flex; */
     /* align-items: center; */
-    
+
 }
 
 .listStyl {
@@ -36,12 +36,9 @@
     padding-bottom: 1.9rem;
     display: flex;
     gap: 0.4rem;
-    
+
 }
 
 .navText {
     font-size: larger;
 }
-
-
-

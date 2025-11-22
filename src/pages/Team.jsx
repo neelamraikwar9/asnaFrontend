@@ -3,8 +3,7 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { useTaskForm } from '../Context/TaskFormContext';
-
+import { useTaskForm } from "../Context/TaskFormContext";
 
 const Team = () => {
   const [teams, setTeams] = useState([]);
@@ -22,7 +21,9 @@ const Team = () => {
       console.log(res.data, "checking memd");
       // console.log(Array.isArray(teams)); // should be true;
 
-      const resMember = await axios.get("https://asna-backend.vercel.app/users");
+      const resMember = await axios.get(
+        "https://asna-backend.vercel.app/users"
+      );
       console.log(resMember.data);
       setMembers(resMember.data);
       setLoading(false);
@@ -36,21 +37,18 @@ const Team = () => {
   }, []);
 
   const [temForm, setTemForm] = useState({
-    name : "",
+    name: "",
     member1: "",
     member2: "",
     member3: "",
-    description: ""
+    description: "",
   });
 
-
-
-  function handleTeamOnChange(e){
-    const {name, value} = e.target;
-    setTemForm((prev)=> ({...prev, [name] : value}));
+  function handleTeamOnChange(e) {
+    const { name, value } = e.target;
+    setTemForm((prev) => ({ ...prev, [name]: value }));
     console.log(temForm, "chekTeamForm");
   }
-
 
   // const handleTeamSubmit = async(e) => {
   //   e.preventDefault();
@@ -87,68 +85,56 @@ const Team = () => {
   //   }
   // }
 
+  const handleTeamSubmit = async (e) => {
+    e.preventDefault();
+    console.log(teamForm, "Detail is adding");
 
+    try {
+      console.log(teamForm, "teamForm");
+      const response = await axios.post(
+        "https://asna-backend.vercel.app/teams",
+        JSON.stringify(teamForm),
+        {
+          headers: { "content-Type": "application/json" },
+        }
+      );
+      console.log(response.data, "Details added successfully");
+      toast.success("Task Added successfully.");
 
-  const handleTeamSubmit = async(e) => {
-  e.preventDefault();
-  console.log(teamForm, "Detail is adding");
+      //   const res = await axios.post(
+      //     "https://asna-backend.vercel.app/teams",
+      //     JSON.stringify(teamForm),
+      //     {
+      //       headers: { "Content-Type": "application/json" }
+      //     }
+      //   );
+      // console.log(res.data, "Details added successfully");
+      //   toast.success("Team Added successfully.");
 
-  try {
-    console.log(teamForm, "teamForm")
-    const response = await axios.post("https://asna-backend.vercel.app/teams", JSON.stringify(teamForm), {
-      headers: { "content-Type" : "application/json"},
-    });
-    console.log(response.data, "Details added successfully")
-    toast.success("Task Added successfully.");
+      setTemForm({
+        name: "",
+        member1: "",
+        member2: "",
+        member3: "",
+        description: "",
+      });
+      setTeamForm(false);
+    } catch (error) {
+      console.log("Error message: ", error.message);
 
-
-
-
-
-
-
-  //   const res = await axios.post(
-  //     "https://asna-backend.vercel.app/teams",
-  //     JSON.stringify(teamForm),
-  //     {
-  //       headers: { "Content-Type": "application/json" }
-  //     }
-  //   );
-  // console.log(res.data, "Details added successfully");
-  //   toast.success("Team Added successfully.");
-
-    setTemForm({
-      name: "",
-      member1: "",
-      member2: "",
-      member3: "",
-      description: ""
-    });
-    setTeamForm(false);
-
-  } catch(error) {
-    console.log("Error message: ", error.message);
-
-    // if (error.response) {
-    //   console.error("Server error:", error.response.data);
-    //   console.error("Status:", error.response.status);
-    //   alert(` Error: ${error.response.data.message || "Failed to add Team"}`);
-    // } else if (error.request) {
-    //   console.error("Network error:", error.request);
-    //   alert("Network error: Please check your internet connection.");
-    // } else {
-    //   console.error("Error:", error.message);
-    //   alert(` Error: ${error.message}`);
-    // }
-  }
-}
-
-
-
-
-
-
-
+      // if (error.response) {
+      //   console.error("Server error:", error.response.data);
+      //   console.error("Status:", error.response.status);
+      //   alert(` Error: ${error.response.data.message || "Failed to add Team"}`);
+      // } else if (error.request) {
+      //   console.error("Network error:", error.request);
+      //   alert("Network error: Please check your internet connection.");
+      // } else {
+      //   console.error("Error:", error.message);
+      //   alert(` Error: ${error.message}`);
+      // }
+    }
+  };
 
   return (
     <main className="OuterCon">
@@ -166,9 +152,7 @@ const Team = () => {
             <div className="modal-overlay">
               <div className="modal-content">
                 <h2>Create New Team</h2>
-                <form onSubmit
-                ={handleTeamSubmit} 
-                className="taskForm" >
+                <form onSubmit={handleTeamSubmit} className="taskForm">
                   <div className="field">
                     <label>Team Name</label>
                     <br />
@@ -199,46 +183,53 @@ const Team = () => {
                     <label>Add Members</label>
 
                     <div className="nameInp">
-                    <input type='text'
-                      className="inpField"
-                      placeholder="Member One Name"
-                      name="member1"
-                      value={temForm.member1}
-                      onChange={handleTeamOnChange}
-                    />
-                    
-                    </div> 
-                    <br/>
-                    
-                    <div className="nameInp">
-                    <input type='text'
-                      className="inpField"
-                      placeholder="Member Two Name"
-                      name="member2"
-                      value={temForm.member2}
-                      onChange={handleTeamOnChange}
-                    />
+                      <input
+                        type="text"
+                        className="inpField"
+                        placeholder="Member One Name"
+                        name="member1"
+                        value={temForm.member1}
+                        onChange={handleTeamOnChange}
+                      />
                     </div>
-                    <br/>
+                    <br />
 
-                    <div className="nameInp">  
-                    <input type='text'
-                      className="inpField"
-                      placeholder="Member Three Name"
-                      name="member3"
-                      value={temForm.member3}
-                      onChange={handleTeamOnChange}
-                    /> 
-                    </div> 
+                    <div className="nameInp">
+                      <input
+                        type="text"
+                        className="inpField"
+                        placeholder="Member Two Name"
+                        name="member2"
+                        value={temForm.member2}
+                        onChange={handleTeamOnChange}
+                      />
+                    </div>
+                    <br />
+
+                    <div className="nameInp">
+                      <input
+                        type="text"
+                        className="inpField"
+                        placeholder="Member Three Name"
+                        name="member3"
+                        value={temForm.member3}
+                        onChange={handleTeamOnChange}
+                      />
+                    </div>
                   </div>
 
                   <div className="field">
                     <label>Description(Optional)</label>
-                    <br/>
-                    <input type="text" className="userInpfield" placeholder="Write Description..." name="description" value={temForm.description} onChange={handleTeamOnChange}/>
+                    <br />
+                    <input
+                      type="text"
+                      className="userInpfield"
+                      placeholder="Write Description..."
+                      name="description"
+                      value={temForm.description}
+                      onChange={handleTeamOnChange}
+                    />
                   </div>
-
-                    
 
                   <div className="projFormBtns leftSide">
                     <button
@@ -258,34 +249,28 @@ const Team = () => {
         </div>
         <div className="cardCon">
           {loading && <p>Teams are Loading...</p>}
-          {error && <p style={{color: 'red'}}>{error.message}</p>}
+          {error && <p style={{ color: "red" }}>{error.message}</p>}
 
           {teams.map((team) => (
-
             <div key={team._id} className="teamCard">
-              <p><strong>{team.name}</strong></p>
+              <p>
+                <strong>{team.name}</strong>
+              </p>
 
               <div key={team._id} className="userProf">
-    
-                  <p className="prof">
-                    {team.member1.charAt(0).toUpperCase()}
-                  </p>
-                  <p className="prof">
-                    {team.member2.charAt(0).toUpperCase()}
-                  </p>
-                  <p className="prof">
-                    {team.member3.charAt(0).toUpperCase()}
-                  </p>
+                <p className="prof">{team.member1.charAt(0).toUpperCase()}</p>
+                <p className="prof">{team.member2.charAt(0).toUpperCase()}</p>
+                <p className="prof">{team.member3.charAt(0).toUpperCase()}</p>
               </div>
-              <br/>
+              <br />
 
               <div>
                 <strong>Team Members:</strong>{" "}
-                <p>{team.member1}, {team.member2}, {team.member3}</p>
+                <p>
+                  {team.member1}, {team.member2}, {team.member3}
+                </p>
               </div>
             </div>
-
-            
           ))}
         </div>
       </div>

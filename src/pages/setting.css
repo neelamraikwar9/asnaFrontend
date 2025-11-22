@@ -1,19 +1,19 @@
 .delBtnCon {
-    display: flex; 
+    display: flex;
     justify-content: center;
 
 }
 
 
-.delBtn{
-    background-color:   oklch(63.7% 0.237 25.331);
-    color: white; 
+.delBtn {
+    background-color: oklch(63.7% 0.237 25.331);
+    color: white;
     width: 5rem;
-    padding: 0.3rem; 
+    padding: 0.3rem;
     border-radius: 1rem;
     border-color: red;
 }
 
-.delBtn:hover{
+.delBtn:hover {
     background-color: oklch(70.4% 0.191 22.216);
 }

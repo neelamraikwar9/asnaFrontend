@@ -63,8 +63,6 @@ export const TaskFormProvider = ({ children }) => {
 
       setTaskForm(false);
       getTasks();
-
-      
     } catch (error) {
       console.log(error, "Error Submitting Task.");
 
@@ -107,14 +105,13 @@ export const TaskFormProvider = ({ children }) => {
     fetchData();
   }, []);
 
-
   async function getTasks() {
     try {
       const resTasks = await axios.get("https://asna-backend.vercel.app/tasks");
       console.log(resTasks.data);
       setTasks(resTasks.data);
-      console.log(tasks, "checking tasks... ")
-      
+      console.log(tasks, "checking tasks... ");
+
       setFilStatus(resTasks.data);
       setLoading(false);
       console.log(tasks, "checking tasks");
@@ -141,13 +138,13 @@ export const TaskFormProvider = ({ children }) => {
         setLoading,
         owners,
         setOwners,
-        projects, 
+        projects,
         setProjects,
         getTasks,
         tasks,
         setTasks,
         filStatus,
-        setFilStatus
+        setFilStatus,
       }}
     >
       {children}

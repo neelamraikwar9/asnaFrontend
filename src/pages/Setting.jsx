@@ -1,60 +1,57 @@
-import './setting.css';
+import "./setting.css";
 import Navbar from "../components/Navbar";
 import { useTaskForm } from "../Context/TaskFormContext";
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Setting = () => {
-  const { projects, setProjects, tasks, setTasks, loading, error } = useTaskForm();
+  const { projects, setProjects, tasks, setTasks, loading, error } =
+    useTaskForm();
   console.log(projects, tasks, "chedkfdatkjaj");
 
- 
-
-  async function handleDeleteProjects(e){
-    const projId = e.target.value; 
+  async function handleDeleteProjects(e) {
+    const projId = e.target.value;
     console.log(projId, "pronkdf");
-    try{
+    try {
       await axios.delete(`https://asna-backend.vercel.app/projects/${projId}`);
       setProjects((prev) => prev.filter((proj) => proj._id !== projId));
       console.log(projects, "kdfkljdfkjdfjkl");
 
       toast.success("Project deleted successfully!", {
-      autoClose: 3000,
+        autoClose: 3000,
       });
-    } catch(error){
-       console.error("Failed to delete project:", error);
+    } catch (error) {
+      console.error("Failed to delete project:", error);
       toast.error("Failed to delete project. Please try again.", {
         autoClose: 3000,
       });
     }
   }
 
-
-
   async function handleDeleteTasks(e) {
-  const taskId = e.target.value;
-  console.log(taskId, "Task ID to delete");
+    const taskId = e.target.value;
+    console.log(taskId, "Task ID to delete");
 
-  try {
-    await axios.delete(`https://asna-backend.vercel.app/tasks/${taskId}`);
-    // setTasks((prev) => {
-    //   const updated = prev.filter((tas) => tas._id !== taskId);
-    //   console.log(updated, "Filtered tasks after delete");
-    //   return updated;
-    // });
+    try {
+      await axios.delete(`https://asna-backend.vercel.app/tasks/${taskId}`);
+      // setTasks((prev) => {
+      //   const updated = prev.filter((tas) => tas._id !== taskId);
+      //   console.log(updated, "Filtered tasks after delete");
+      //   return updated;
+      // });
 
-     setTasks((prev) => prev.filter((tas) => tas._id !== taskId));
+      setTasks((prev) => prev.filter((tas) => tas._id !== taskId));
       console.log(tasks, "kdfkljdfkjdfjkl");
 
-    toast.success("Task deleted successfully!", { autoClose: 3000 });
-  } catch (error) {
-    console.error("Failed to delete task:", error);
-    toast.error("Failed to delete Task. Please try again.", { autoClose: 3000 });
+      toast.success("Task deleted successfully!", { autoClose: 3000 });
+    } catch (error) {
+      console.error("Failed to delete task:", error);
+      toast.error("Failed to delete Task. Please try again.", {
+        autoClose: 3000,
+      });
+    }
   }
-}
-
 
   return (
     <main className="OuterCon">
@@ -63,18 +60,21 @@ const Setting = () => {
       </div>
 
       <div className="projTasksCon">
-      <h1 className="headText">Setting</h1>
-      <h2>Manage Projects and Tasks</h2>
-         <br/>
+        <h1 className="headText">Setting</h1>
+        <h2>Manage Projects and Tasks</h2>
+        <br />
 
-      <h2>All Projects({projects.length})</h2>
+        <h2>All Projects({projects.length})</h2>
         <div className="projsCon">
           {loading && <p>Projects are Loading...</p>}
           {error && <p style={{ color: "red" }}>{error}</p>}
 
-
           {projects.map((proj) => (
-            <div className="projCard " key={proj._id} style={{height: '20rem'}}>
+            <div
+              className="projCard "
+              key={proj._id}
+              style={{ height: "20rem" }}
+            >
               <p
                 style={{
                   backgroundColor:
@@ -90,21 +90,26 @@ const Setting = () => {
               <h3>{proj.name}</h3>
               <p style={{ fontSize: "0.8rem" }}>{proj.description}</p>
               <div className="delBtnCon">
-              <button className="delBtn" value={proj._id} onClick={handleDeleteProjects}>Delete</button>
+                <button
+                  className="delBtn"
+                  value={proj._id}
+                  onClick={handleDeleteProjects}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))}
         </div>
-         <br/>
-         <br/>
-         <br/>
+        <br />
+        <br />
+        <br />
 
-
-      <h2>All Tasks({tasks.length})</h2>
+        <h2>All Tasks({tasks.length})</h2>
         <div className="projsCon">
           {loading && <p>Tasks are Loading...</p>}
           {error && <p style={{ color: "red" }}>{error}</p>}
-         
+
           {tasks.map((tasks) => (
             <div className="projCard tasksCard" key={tasks._id}>
               <p
@@ -123,14 +128,19 @@ const Setting = () => {
 
               <p>{new Date(tasks.createdAt).toLocaleDateString()}</p>
 
-               <div className="delBtnCon">
-              <button className="delBtn" value={tasks._id} onClick={handleDeleteTasks}>Delete</button>
+              <div className="delBtnCon">
+                <button
+                  className="delBtn"
+                  value={tasks._id}
+                  onClick={handleDeleteTasks}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
-
     </main>
   );
 };

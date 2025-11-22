@@ -14,7 +14,7 @@ body {
 .searchBarCon {
     border: 1px solid sandybrown;
     position: relative;
-    margin-top: 2rem; 
+    margin-top: 2rem;
 }
 
 .searchInp {
@@ -56,11 +56,11 @@ body {
     border-radius: 0.3rem;
     margin-top: 3.3rem;
     /* margin-left: 5rem; */
-    
+
 }
 
 .newProjBtn:hover {
-    background-color: oklch(62.3% 0.214 259.815);  
+    background-color: oklch(62.3% 0.214 259.815);
 }
 
 .projCard {
@@ -71,7 +71,7 @@ body {
     padding: 0.2rem;
     margin: 0.1rem;
     /* background-color: oklch(89.4% 0.057 293.283); */
-    background-color:oklch(96.9% 0.016 293.756);
+    background-color: oklch(96.9% 0.016 293.756);
 }
 
 .projsCon {
@@ -88,30 +88,33 @@ body {
 }
 
 .modal-overlay {
-  position: fixed;       /* Sticks to viewport, not inside a container */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.2); /* Dim background */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;         /* Above other content */
+    position: fixed;
+    /* Sticks to viewport, not inside a container */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    /* Dim background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    /* Above other content */
 }
 
 .modal-content {
-  background: white;
-  padding: 20px;
-  width: 23rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 24px rgba(0,0,0,0.24);
-  min-width: 320px;
-  max-width: 90vw;
+    background: white;
+    padding: 20px;
+    width: 23rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.24);
+    min-width: 320px;
+    max-width: 90vw;
 }
 
 .fieldCon {
-    display: flex; 
+    display: flex;
     flex-direction: column;
     /* border: 1px solid blue; */
     padding: 1rem 0;
@@ -119,25 +122,26 @@ body {
 
 .projName {
     /* border: 1px solid blue; */
-    padding-bottom: 1rem ;
+    padding-bottom: 1rem;
 
 }
 
-.inp{
+.inp {
     margin-top: 0.2rem;
     width: 22rem;
     border-radius: 0.3rem;
     font-size: 1rem;
 }
 
-.desInp{
-    padding-bottom: 3rem; 
+.desInp {
+    padding-bottom: 3rem;
 
 }
 
 .margtop {
     margin-top: 1rem;
 }
+
 .projFormBtns {
     margin-top: 1rem;
     display: flex;
@@ -153,11 +157,11 @@ body {
     background-color: oklch(44.6% 0.043 257.281);
     /* border: 1px solid blue; */
     padding: 0.5rem 0.5rem;
-    color: white; 
+    color: white;
 
 }
 
-.cancelBtn:hover{
+.cancelBtn:hover {
     background-color: oklch(55.1% 0.027 264.364);
 
 }
@@ -165,16 +169,16 @@ body {
 .creatBtn {
     background-color: oklch(54.6% 0.245 262.881);
     padding: 0.5rem 0.5rem;
-    color: white; 
+    color: white;
 }
 
-.creatBtn:hover{
+.creatBtn:hover {
     background-color: oklch(62.3% 0.214 259.815);
 }
 
 
 .taskForm {
-    display: flex; 
+    display: flex;
     flex-direction: column;
 
 }
@@ -193,7 +197,7 @@ body {
 
 .userInpfield {
     border-radius: 0.3rem;
-    border: 1px solid black; 
+    border: 1px solid black;
     font-size: 0.9rem;
     width: 22.3rem;
     padding: 0.3rem;
@@ -206,8 +210,8 @@ body {
 .selInp {
     width: 98%;
     padding: 0.2rem;
-    border-radius: 0.2rem; 
-    border: 1px solid black; 
+    border-radius: 0.2rem;
+    border: 1px solid black;
 
 
 }

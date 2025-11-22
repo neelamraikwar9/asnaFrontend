@@ -1,7 +1,7 @@
 .sortByCon {
     border: 1px solid salmon;
-    width:62.9rem;
-    height:2rem;
+    width: 62.9rem;
+    height: 2rem;
     display: flex;
     gap: 8rem;
     margin-top: 1rem;
@@ -17,25 +17,25 @@
 .butn {
     border-radius: 0.4rem;
     font-size: small;
-    
+
 }
 
-.text{
+.text {
     font-size: 1.5rem;
 }
 
 
 .filterCon {
     margin-top: 0;
-    
-   
+
+
 }
 
 
 .sortFilContainer {
     display: flex;
     flex-direction: row;
-    border: 1px solid green; 
+    border: 1px solid green;
     height: 3rem;
 }
 
@@ -51,7 +51,7 @@
 
 .taskBtnCon {
     padding-left: 0;
-    border: 1px solid purple; 
+    border: 1px solid purple;
     width: 14.9rem;
     display: flex;
     justify-content: end;
@@ -62,11 +62,11 @@
     border-radius: 0.5rem;
     width: 8rem;
     height: 2rem;
-background-color: oklch(48.8% 0.243 264.376);
-color: white;
+    background-color: oklch(48.8% 0.243 264.376);
+    color: white;
 }
 
-.taskBtn:hover{
+.taskBtn:hover {
     background-color: oklch(54.6% 0.245 262.881);
 }
 
@@ -91,7 +91,7 @@ color: white;
     /* justify-content: center; */
 }
 
-.boxesBorder{
+.boxesBorder {
     border: 1px solid gray;
     width: 13rem;
 
@@ -99,7 +99,7 @@ color: white;
 
 .boxCont {
     padding-left: 1.9rem;
-    margin: 0.2rem 0; 
+    margin: 0.2rem 0;
 }
 
 .tableTitle {
@@ -107,5 +107,5 @@ color: white;
     background-color: aliceblue;
     margin: 0.3rem 0;
     margin-top: 0.4rem;
-  
+
 }

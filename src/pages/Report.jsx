@@ -111,7 +111,7 @@ const Report = () => {
             />
           </div>
           <br />
-          
+
           <h2>Total Days of Work Pending: </h2>
           <div style={{ width: "25rem", height: "25rem" }}>
             <Doughnut
@@ -133,7 +133,7 @@ const Report = () => {
           </div>
 
           <br />
-          
+
           <h2>Tasks Closed by Team:</h2>
           <div style={{ width: "25rem", height: "25rem" }}>
             <Doughnut
