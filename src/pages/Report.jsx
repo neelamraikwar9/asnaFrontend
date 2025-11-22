@@ -1,4 +1,4 @@
-// import React from 'react'
+import './report.css';
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -92,6 +92,7 @@ const Report = () => {
         <h2>Total Work Done Last Week:</h2>
 
         <div>
+         <div className="chartCon">
           <div style={{ width: "25rem", height: "25rem" }}>
             <Doughnut
               data={{
@@ -110,9 +111,11 @@ const Report = () => {
               }}
             />
           </div>
+          </div>
           <br />
 
           <h2>Total Days of Work Pending: </h2>
+           <div className="chartCon">
           <div style={{ width: "25rem", height: "25rem" }}>
             <Doughnut
               data={{
@@ -131,11 +134,13 @@ const Report = () => {
               }}
             />
           </div>
+          </div>
 
           <br />
 
           <h2>Tasks Closed by Team:</h2>
-          <div style={{ width: "25rem", height: "25rem" }}>
+          <div className="chartCon">
+          <div style={{ width: "25rem", height: "25rem"}}>
             <Doughnut
               data={{
                 labels: ["Blocked Tasks", "All Tasks"],
@@ -152,6 +157,7 @@ const Report = () => {
                 ],
               }}
             />
+          </div>
           </div>
         </div>
       </div>
