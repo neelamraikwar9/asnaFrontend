@@ -145,6 +145,7 @@ export const TaskFormProvider = ({ children }) => {
         setProjects,
         getTasks,
         tasks,
+        setTasks,
         filStatus,
         setFilStatus
       }}

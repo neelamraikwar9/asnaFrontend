@@ -1,10 +1,60 @@
 import './setting.css';
 import Navbar from "../components/Navbar";
 import { useTaskForm } from "../Context/TaskFormContext";
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Setting = () => {
-  const { projects, tasks, loading, error } = useTaskForm();
+  const { projects, setProjects, tasks, setTasks, loading, error } = useTaskForm();
   console.log(projects, tasks, "chedkfdatkjaj");
+
+ 
+
+  async function handleDeleteProjects(e){
+    const projId = e.target.value; 
+    console.log(projId, "pronkdf");
+    try{
+      await axios.delete(`https://asna-backend.vercel.app/projects/${projId}`);
+      setProjects((prev) => prev.filter((proj) => proj._id !== projId));
+      console.log(projects, "kdfkljdfkjdfjkl");
+
+      toast.success("Project deleted successfully!", {
+      autoClose: 3000,
+      });
+    } catch(error){
+       console.error("Failed to delete project:", error);
+      toast.error("Failed to delete project. Please try again.", {
+        autoClose: 3000,
+      });
+    }
+  }
+
+
+
+  async function handleDeleteTasks(e) {
+  const taskId = e.target.value;
+  console.log(taskId, "Task ID to delete");
+
+  try {
+    await axios.delete(`https://asna-backend.vercel.app/tasks/${taskId}`);
+    // setTasks((prev) => {
+    //   const updated = prev.filter((tas) => tas._id !== taskId);
+    //   console.log(updated, "Filtered tasks after delete");
+    //   return updated;
+    // });
+
+     setTasks((prev) => prev.filter((tas) => tas._id !== taskId));
+      console.log(tasks, "kdfkljdfkjdfjkl");
+
+    toast.success("Task deleted successfully!", { autoClose: 3000 });
+  } catch (error) {
+    console.error("Failed to delete task:", error);
+    toast.error("Failed to delete Task. Please try again.", { autoClose: 3000 });
+  }
+}
+
 
   return (
     <main className="OuterCon">
@@ -40,7 +90,7 @@ const Setting = () => {
               <h3>{proj.name}</h3>
               <p style={{ fontSize: "0.8rem" }}>{proj.description}</p>
               <div className="delBtnCon">
-              <button className="delBtn">Delete</button>
+              <button className="delBtn" value={proj._id} onClick={handleDeleteProjects}>Delete</button>
               </div>
             </div>
           ))}
@@ -74,12 +124,13 @@ const Setting = () => {
               <p>{new Date(tasks.createdAt).toLocaleDateString()}</p>
 
                <div className="delBtnCon">
-              <button className="delBtn">Delete</button>
+              <button className="delBtn" value={tasks._id} onClick={handleDeleteTasks}>Delete</button>
               </div>
             </div>
           ))}
         </div>
       </div>
+
     </main>
   );
 };
