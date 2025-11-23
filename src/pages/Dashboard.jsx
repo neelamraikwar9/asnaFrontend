@@ -171,9 +171,9 @@ const Dashboard = () => {
   }
   return (
     <main className="OuterCon">
-      <div className="navbar">
+     <div className="navbar">
         <Navbar />
-      </div>
+      </div> 
 
       <div className="projTasksCon">
         <div className="searchBarCon">

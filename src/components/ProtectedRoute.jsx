@@ -1,8 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../AuthContext";
-// import Dashboard from '../pages/Dashboard';
+import Navbar from "./Navbar";
+
 
 export default function ProtectedRoute() {
   const { token } = useAuth();
-  return token ? <Outlet /> : <Navigate to="/" />;
+  return(
+    <main  className="OuterCon">
+     <div className="navbar">
+        <Navbar />
+      </div>
+    <div>
+     {token ? <Outlet /> : <Navigate to="/"/>}
+   </div>
+   </main>
+  )
 }

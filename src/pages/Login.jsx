@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("https://asna-backend.vercel.app/user/login", {
+    const response = await fetch("https://localhost:2000/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,27 +31,7 @@ const Login = () => {
     }
   };
 
-  //     const handleSignIn = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:2000/admin/login", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ secret }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error(`Error: ${response.status} ${response.statusText}`);
-  //     }
-
-  //     const data = await response.json();
-  //     console.log(data);
-  //     localStorage.setItem("adminToken",  data.token);
-
-  //   } catch (error) {
-  //     console.error("Fetch error:", error.message);
-  //     alert("Login failed: " + error.message);
-  //   }
-  // };
+  
 
   return (
     <main>
@@ -80,14 +60,15 @@ const Login = () => {
               <div className="password">
                 <input
                   type="text"
-                  // placeholder="Password"
+                  placeholder="Password"
                   id="pass"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+
                 />
                 <i
                   className="bi bi-eye"
-                  style={{ position: "absolute", right: "0.5rem" }}
+                  style={{ position: "absolute", right: "5rem", margin: '0.1rem'}}
                 ></i>
               </div>
             </div>
