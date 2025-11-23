@@ -82,7 +82,9 @@ const Setting = () => {
                       ? "oklch(95% 0.052 163.051)"
                       : proj.status === "In Progress"
                       ? "oklch(97.3% 0.071 103.193)"
-                      : "oklch(86.9% 0.022 252.894)",
+                      : proj.status === "To Do"
+                      ? "oklch(86.9% 0.022 252.894)"
+                      : "oklch(80.8% 0.114 19.571)",
                 }}
               >
                 {proj.status}
@@ -119,7 +121,9 @@ const Setting = () => {
                       ? "oklch(95% 0.052 163.051)"
                       : tasks.status === "In Progress"
                       ? "oklch(97.3% 0.071 103.193)"
-                      : "oklch(98.5% 0.002 247.839)",
+                      : tasks.status === "To Do"
+                      ? "oklch(86.9% 0.022 252.894)"
+                      : "oklch(80.8% 0.114 19.571)",
                 }}
               >
                 {tasks.status}

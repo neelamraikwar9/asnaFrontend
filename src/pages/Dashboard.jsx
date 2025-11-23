@@ -19,35 +19,26 @@ const Dashboard = () => {
   const [projForm, setProjForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Filter tasks based on the search term (e.g., searching by task name)
+  const filteredTasks = tasks.filter((task) => {
+    console.log(task.name.toLowerCase());
 
-  function searchHandler(){
-    setSearchTerm(value);
-    
-
-    const filteredTasks = tasks.filter((task) =>
-    task.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    return task.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
   console.log(filteredTasks, "filteredTasks");
-
-
-
-  }
-
-   // Filter tasks based on the search term (e.g., searching by task name)
-  
 
   useEffect(() => {
     setFilTasks(filteredTasks);
   }, [searchTerm]);
 
+  const filteredProjects = projects.filter((proj) =>
+    proj.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  console.log(filteredProjects, "filteredProjects");
 
-  const filteredProjects = filProjects.filter((proj) => proj.name.toLowerCase().includes(searchTerm.toLowerCase));
-  console.log(filteredProjects);
-
-
-  
-
-
+  useEffect(() => {
+    setFilTasks(filteredProjects);
+  }, [searchTerm]);
 
   const {
     tForm,
@@ -141,7 +132,6 @@ const Dashboard = () => {
       setFilTasks(resTasks.data);
       console.log(tasks, "checking tasks");
       setLoading(false);
-
     } catch (error) {
       setError(error.message);
       console.log("Error message: ", error.message);
@@ -187,7 +177,13 @@ const Dashboard = () => {
 
       <div className="projTasksCon">
         <div className="searchBarCon">
-          <input type="search" placeholder="Search..." className="searchInp" value={searchTerm} onChange={searchHandler}/>
+          <input
+            type="search"
+            placeholder="Search..."
+            className="searchInp"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
           <img
             src="./icons/searchbar.png"
             alt="searchbar icon"
@@ -211,6 +207,7 @@ const Dashboard = () => {
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
                 <option value="To Do">To Do</option>
+                <option value="Blocked">Blocked</option>
               </select>
             </div>
 
@@ -314,7 +311,9 @@ const Dashboard = () => {
                         ? "oklch(95% 0.052 163.051)"
                         : proj.status === "In Progress"
                         ? "oklch(97.3% 0.071 103.193)"
-                        : "oklch(86.9% 0.022 252.894)",
+                        : proj.status === "To Do"
+                        ? "oklch(86.9% 0.022 252.894)"
+                        : "oklch(80.8% 0.114 19.571)",
                   }}
                 >
                   {proj.status}
@@ -335,6 +334,7 @@ const Dashboard = () => {
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
                 <option value="To Do">To Do</option>
+                <option value="Blocked">Blocked</option>
               </select>
             </div>
 
@@ -348,7 +348,7 @@ const Dashboard = () => {
             {taskForm && (
               <div className="modal-overlay">
                 <div className="modal-content modConPadding">
-                  <h2 className = "createTskTitle">Create New Task</h2>
+                  <h2 className="createTskTitle">Create New Task</h2>
                   <form className="taskForm" onSubmit={handleTaskSubmit}>
                     <div className="field remSpace">
                       <label>Select Project</label>
@@ -504,7 +504,9 @@ const Dashboard = () => {
                         ? "oklch(95% 0.052 163.051)"
                         : tasks.status === "In Progress"
                         ? "oklch(97.3% 0.071 103.193)"
-                        : "oklch(98.5% 0.002 247.839)",
+                        : tasks.status === "To Do"
+                        ? "oklch(86.9% 0.022 252.894)"
+                        : "oklch(80.8% 0.114 19.571)",
                   }}
                 >
                   {tasks.status}

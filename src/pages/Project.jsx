@@ -137,6 +137,7 @@ const Project = () => {
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
                 <option value="To Do">To Do</option>
+                <option value="Blocked">Blocked</option>
               </select>
             </div>
 
@@ -148,7 +149,7 @@ const Project = () => {
 
             {taskForm && (
               <div className="modal-overlay">
-                <div className= "modal-content modConPadding">
+                <div className="modal-content modConPadding">
                   <h2 className="createTskTitle">Create New Task</h2>
                   <form className="taskForm" onSubmit={handleTaskSubmit}>
                     <div className="field">
@@ -356,7 +357,9 @@ const Project = () => {
                         ? "oklch(95% 0.052 163.051)"
                         : task.status === "In Progress"
                         ? "oklch(97.3% 0.071 103.193)"
-                        : "oklch(86.9% 0.022 252.894)",
+                        : task.status === "To Do"
+                        ? "oklch(86.9% 0.022 252.894)"
+                        : "oklch(80.8% 0.114 19.571)",
                   }}
                 >
                   {task.status}
