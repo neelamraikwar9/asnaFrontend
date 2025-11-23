@@ -17,6 +17,37 @@ const Dashboard = () => {
   const [filTasks, setFilTasks] = useState([]);
 
   const [projForm, setProjForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+
+  function searchHandler(){
+    setSearchTerm(value);
+    
+
+    const filteredTasks = tasks.filter((task) =>
+    task.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  console.log(filteredTasks, "filteredTasks");
+
+
+
+  }
+
+   // Filter tasks based on the search term (e.g., searching by task name)
+  
+
+  useEffect(() => {
+    setFilTasks(filteredTasks);
+  }, [searchTerm]);
+
+
+  const filteredProjects = filProjects.filter((proj) => proj.name.toLowerCase().includes(searchTerm.toLowerCase));
+  console.log(filteredProjects);
+
+
+  
+
+
 
   const {
     tForm,
@@ -84,63 +115,6 @@ const Dashboard = () => {
     }
   }
 
-  // const [tForm, setTForm] = useState({
-  //   name: "",
-  //   project: "",
-  //   team: "",
-  //   owners: "",
-  //   tags: "",
-  //   timeToComplete: "",
-  //   status: "",
-  //   createdAt: ""
-  // });
-
-  // function handleTaskOnChange(e){
-  //   const {name, value} = e.target;
-  //   setTForm((prev) => ({...prev, [name] : value}))
-  // }
-
-  // async function handleTaskSubmit(e){
-  //   e.preventDefault();
-  //   console.log(tForm, "submitting form...")
-
-  //   const subTForm = {...tForm, tags: tForm.tags ? [tForm.tags] : [] };
-  //   console.log(subTForm, "checkignsubtform")
-
-  //   try{
-  //     const res = await axios.post("https://asna-backend.vercel.app/tasks", JSON.stringify(subTForm), {
-  //       headers: {"content-Type" : "application/json"}
-  //     });
-  //     console.log(res.data, "Details added successfully");
-  //     toast.success("Task Added successfully.");
-
-  //     setTForm({
-  //       name: "",
-  //       project: "",
-  //       team: "",
-  //       owners: "",
-  //       tags: "",
-  //       timeToComplete: "",
-  //       status: "",
-  //       createdAt: ""
-  //     })
-  //   }  catch(error){
-  //   console.log(error, "Error Submitting Task.")
-
-  //   if(error.response){
-  //     console.error("Server error:", error.response.data);
-  //     console.error("Status:", error.response.status);
-  //     alert(` Error: ${error.response.data.message || "Failed to add lead"}`);
-  //   } else if(error.request){
-  //     console.error("Network error:", error.request);
-  //     alert("Network error: Please check your internet connection.");
-  //   }  else {
-  //         console.error("Error:", error.message);
-  //         alert(` Error: ${error.message}`);
-  //       }
-  // }
-  // }
-
   async function fetchProjects() {
     try {
       const resProjs = await axios.get(
@@ -168,19 +142,6 @@ const Dashboard = () => {
       console.log(tasks, "checking tasks");
       setLoading(false);
 
-      // const resProjs = await axios.get('https://asna-backend.vercel.app/projects');
-      // console.log(resProjs.data);
-      // setProjects(resProjs.data);
-      // setFilProjects(resProjs.data);
-      // setLoading(false);
-
-      // const resTeam = await axios.get('https://asna-backend.vercel.app/teams');
-      // setTeams(resTeam.data);
-      // setLoading(false);
-
-      // const resOwner = await axios.get('https://asna-backend.vercel.app/users');
-      // setOwners(resOwner.data);
-      // setLoading(false);
     } catch (error) {
       setError(error.message);
       console.log("Error message: ", error.message);
@@ -226,7 +187,7 @@ const Dashboard = () => {
 
       <div className="projTasksCon">
         <div className="searchBarCon">
-          <input type="search" placeholder="search" className="searchInp" />
+          <input type="search" placeholder="Search..." className="searchInp" value={searchTerm} onChange={searchHandler}/>
           <img
             src="./icons/searchbar.png"
             alt="searchbar icon"
@@ -234,7 +195,7 @@ const Dashboard = () => {
               width: "1.6rem",
               height: "1.6rem",
               position: "absolute",
-              left: "60rem",
+              left: "57rem",
               marginTop: "0.2rem",
             }}
           />
