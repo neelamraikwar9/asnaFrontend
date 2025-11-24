@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -14,7 +16,7 @@ const Signup = () => {
 
   async function handleSignUpSubmit(e) {
     e.preventDefault();
-    setError(null);
+    // setError(null);
 
     const res = await fetch("https://asna-backend.vercel.app/api/signup", {
       method: "POST",
@@ -25,8 +27,10 @@ const Signup = () => {
     const data = res.json();
     if (res.status === 201) {
       navigate("/dashboard");
+      toast.success("You are logged in successfully.")
     } else {
-      setError(data.error || "Signup failed");
+      setError(data.error || "Invalid credentials");
+      toast.error("Already have an account.")
     }
   }
 
@@ -110,7 +114,7 @@ const Signup = () => {
                 Sign Up
               </button>
             </div>
-            {error && <div style={{ color: "red" }}>{error}</div>}
+            {/* {error && <div style={{ color: "red" }}>{error}</div>} */}
 
             <Link to="/">
               <p>Already have an account? Sign in.</p>

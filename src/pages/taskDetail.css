@@ -1,7 +1,7 @@
 .detailHeadTitle {
     display: flex;
     justify-content: center;
-    border: 1px solid burlywood;
+    /* border: 1px solid burlywood; */
 }
 
 .detailContainer {

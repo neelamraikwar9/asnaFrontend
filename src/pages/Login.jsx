@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Login = () => {
@@ -29,8 +31,9 @@ const Login = () => {
     if (data.token) {
       login(data.token);
       navigate("/dashboard"); // Success, go to landing page
+      toast.success("You are logged in successfully.")
     } else {
-      alert("Login failed!");
+      toast.error("Invalid Email and Password!");
     }
   };
 
