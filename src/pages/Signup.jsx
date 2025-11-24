@@ -53,6 +53,7 @@ const Signup = () => {
                 placeholder="Enter Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                className="inpFont"
               />
             </div>
 
@@ -66,6 +67,7 @@ const Signup = () => {
                 placeholder="Enter Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="inpFont"
               />
             </div>
 
@@ -78,6 +80,7 @@ const Signup = () => {
                 placeholder="Enter Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="inpFont"
               />
               <button type="button" onClick={handleEyeClick} className="eyeBtn">
               {visible ? 

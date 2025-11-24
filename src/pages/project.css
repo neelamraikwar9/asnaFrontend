@@ -1,5 +1,5 @@
 .sortByCon {
-    border: 1px solid salmon;
+    /* border: 1px solid salmon; */
     width: 62.9rem;
     height: 2rem;
     display: flex;
@@ -35,7 +35,7 @@
 .sortFilContainer {
     display: flex;
     flex-direction: row;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     height: 3rem;
 }
 
@@ -46,12 +46,12 @@
     /* padding-bottom: rem; */
 
 
-    border: 1px solid blue
+    /* border: 1px solid blue */
 }
 
 .taskBtnCon {
     padding-left: 0;
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
     width: 14.9rem;
     display: flex;
     justify-content: end;
@@ -73,7 +73,7 @@
 
 .tasksInfoTable {
     display: flex;
-    border: 2px solid rgb(216, 238, 13);
+    /* border: 2px solid rgb(216, 238, 13); */
     width: 63rem;
     height: auto;
     margin-top: 2rem;
@@ -92,7 +92,7 @@
 }
 
 .boxesBorder {
-    border: 1px solid gray;
+    border: 1px solid rgb(74, 73, 73);
     width: 13rem;
 
 }

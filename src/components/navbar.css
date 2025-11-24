@@ -5,7 +5,7 @@
 }
 
 .navCon {
-    border: 1px solid rgb(250, 114, 214);
+    /* border: 1px solid rgb(250, 114, 214); */
     padding-top: 1rem;
     /* background-color: oklch(88.576% 0.04882 298.413); */
     background-color: oklch(94.3% 0.029 294.588);
@@ -19,7 +19,7 @@
 
 .listStyl {
     list-style: none;
-    border: 1px solid salmon;
+    /* border: 1px solid salmon; */
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -32,7 +32,7 @@
 } */
 
 .navItem {
-    border: 1px solid gold;
+    /* border: 1px solid gold; */
     padding-bottom: 1.9rem;
     display: flex;
     gap: 0.4rem;
