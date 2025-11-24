@@ -11,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +34,11 @@ const Login = () => {
     }
   };
 
+
+  function handleEyeClick(){
+    setVisible( visible => !visible);
+  }
+
   
 
   return (
@@ -49,10 +55,11 @@ const Login = () => {
               <br />
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter your Email"
                 id="em"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="inpFont"
               />
             </div>
 
@@ -66,11 +73,27 @@ const Login = () => {
                   id="pass"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="inpFont"
                 />
-                <i
-                  className="bi bi-eye"
-                  style={{ position: "absolute", right: "5rem", margin: '0.1rem'}}
-                ></i>
+                <button type="button" onClick={handleEyeClick} className="eyeBtn">
+              {visible ? 
+              <i
+                className="bi bi-eye"
+                style={{
+                  position: "absolute",
+                  right: "0.1rem",
+                  margin: "0.1rem",
+                  bottom: "0.1rem",
+                }}
+              ></i>  : 
+              <i class="bi bi-eye-slash" style={{
+                  position: "absolute",
+                  right: "0.1rem",
+                  bottom: '0.1rem',
+                  margin: "0.1rem",
+                }}></i>
+              }
+              </button>
               </div>
             </div>
 

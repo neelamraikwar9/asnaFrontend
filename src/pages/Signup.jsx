@@ -10,6 +10,8 @@ const Signup = () => {
   const [error, setError] = useState();
   const navigate = useNavigate();
 
+  const [visible, setVisible] = useState(false);
+
   async function handleSignUpSubmit(e) {
     e.preventDefault();
     setError(null);
@@ -26,6 +28,10 @@ const Signup = () => {
     } else {
       setError(data.error || "Signup failed");
     }
+  }
+
+  function handleEyeClick(){
+    setVisible( visible => !visible);
   }
 
   return (
@@ -68,20 +74,30 @@ const Signup = () => {
               <br />
               <div className="password">
               <input
-                type="type"
+                type= { visible ? "text" : "password"}
                 placeholder="Enter Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <button type="button" onClick={handleEyeClick} className="eyeBtn">
+              {visible ? 
               <i
                 className="bi bi-eye"
                 style={{
                   position: "absolute",
-                  right: "5rem",
+                  right: "0.1rem",
                   margin: "0.1rem",
+                  bottom: "0.1rem",
                 }}
-                // onClick={handleEyeClick}
-              ></i> 
+              ></i>  : 
+              <i class="bi bi-eye-slash" style={{
+                  position: "absolute",
+                  right: "0.1rem",
+                  bottom: '0.1rem',
+                  margin: "0.1rem",
+                }}></i>
+              }
+              </button>
 
               </div>
             </div>
@@ -94,7 +110,7 @@ const Signup = () => {
             {error && <div style={{ color: "red" }}>{error}</div>}
 
             <Link to="/">
-              <p>Already have an account Sign in!</p>
+              <p>Already have an account? Sign in.</p>
             </Link>
           </form>
         </div>

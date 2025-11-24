@@ -71,3 +71,18 @@ input {
 .btn:hover {
     background-color: oklch(54.6% 0.245 262.881);
 }
+
+
+.eyeBtn {
+    border: 1px white;
+    background-color: white;
+    padding: 0.5rem;
+    position: absolute;
+    right: 4.9rem;
+    top: 0.4rem;
+}
+
+.inpFont {
+    font-size: 1rem;
+    padding: 0 0.6rem;
+}
