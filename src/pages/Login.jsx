@@ -15,7 +15,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:2000/api/login", {
+    const response = await fetch("https://asna-backend.vercel.app/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

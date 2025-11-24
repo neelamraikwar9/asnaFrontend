@@ -16,7 +16,7 @@ const Signup = () => {
     e.preventDefault();
     setError(null);
 
-    const res = await fetch("http://localhost:2000/api/signup", {
+    const res = await fetch("https://asna-backend.vercel.app/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),
