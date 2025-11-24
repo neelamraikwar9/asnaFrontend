@@ -3,6 +3,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +14,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("https://localhost:2000/api/login", {
+    const response = await fetch("http://localhost:2000/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +45,7 @@ const Login = () => {
         <div className="fields">
           <form onSubmit={handleSubmit}>
             <div className="inpField">
-              <label htmlFor="em">Email</label>
+              <label htmlFor="em" className="lable" style={{marginRight: '11rem'}} >Email</label>
               <br />
               <input
                 type="email"
@@ -55,7 +57,7 @@ const Login = () => {
             </div>
 
             <div className="inpField">
-              <label htmlFor="pass">Password</label>
+              <label htmlFor="pass" className="lable">Password</label>
               <br />
               <div className="password">
                 <input
@@ -64,7 +66,6 @@ const Login = () => {
                   id="pass"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-
                 />
                 <i
                   className="bi bi-eye"
@@ -78,6 +79,10 @@ const Login = () => {
                 Sign in
               </button>
             </div>
+            
+            <Link to="/signup">
+            <p>Not registered? Sign up now.</p>
+            </Link>
           </form>
         </div>
       </div>

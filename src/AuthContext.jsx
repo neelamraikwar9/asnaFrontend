@@ -7,10 +7,10 @@ export const useAuth = () => useContext(AuthContext);
 export function Authprovider({ children }) {
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  const login = (newToken) => {
-    setToken(newToken);
-    localStorage.setItem("token", newToken);
-  };
+  // const login = (newToken) => {
+  //   setToken(newToken);
+  //   localStorage.setItem("token", newToken);
+  // };
 
   // const logout = () => {
   //   setToken(null);
@@ -18,7 +18,7 @@ export function Authprovider({ children }) {
   // };
 
 
-  // const login = (t) => { setToken(t); localStorage.setItem('token', t); };
+  const login = (t) => { setToken(t); localStorage.setItem('token', t); };
   const logout = () => { setToken(null); localStorage.removeItem('token'); };
 
   return (

@@ -4,7 +4,7 @@
 
 
 .loginCon {
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     height: 20rem;
     width: 100%;
 
@@ -15,7 +15,7 @@
     flex-direction: column;
     padding: 1rem;
     text-align: center;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     align-items: center;
 
 }
@@ -42,10 +42,17 @@ input {
 
 }
 
-.inpField {
-    border: 1px solid green;    
+/* .inpField { */
+    /* border: 1px solid green;     */
     /* padding: 0.5rem; */
+    /* display: flex; */
+    /* flex-direction: column;  */
+    /* gap : 0.1rem; */
 
+/* } */
+
+.lable {
+    margin-right: 9.3rem;
 }
 
 .btnCon {

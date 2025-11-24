@@ -22,7 +22,7 @@ function App() {
           {/* <Navbar/> */}
           <Routes>
             <Route path="/" element={<Login />}></Route>
-            <Route path="/signup-page" element={<Login />}></Route>
+            <Route path="/signup" element={<Signup />}></Route>
 
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route element={<ProtectedRoute />}> </Route>
