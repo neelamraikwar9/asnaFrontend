@@ -1,5 +1,5 @@
 import "./taskDetail.css";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -29,9 +29,9 @@ const TaskDetail = () => {
 
   return (
     <main className="OuterCon">
-      <div className="navbar">
+      {/* <div className="navbar">
         <Navbar />
-      </div>
+      </div> */}
 
       <div className="projTasksCon">
         <div className="detailHeadTitle">

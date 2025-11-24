@@ -84,9 +84,9 @@ const Report = () => {
 
   return (
     <main className="OuterCon">
-      <div className="navbar">
+      {/* <div className="navbar">
         <Navbar />
-      </div>
+      </div> */}
       <div className="projTasksCon">
         <h1 className="headText">Report Overview</h1>
         <h2>Total Work Done Last Week:</h2>

@@ -1,5 +1,5 @@
 import "./team.css";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -138,9 +138,9 @@ const Team = () => {
 
   return (
     <main className="OuterCon">
-      <div className="navbar">
+      {/* <div className="navbar">
         <Navbar />
-      </div>
+      </div> */}
 
       <div className="projTasksCon">
         <div className="con">

@@ -1,5 +1,5 @@
 import "./setting.css";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import { useTaskForm } from "../Context/TaskFormContext";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -55,9 +55,9 @@ const Setting = () => {
 
   return (
     <main className="OuterCon">
-      <div className="navbar">
+      {/* <div className="navbar">
         <Navbar />
-      </div>
+      </div> */}
 
       <div className="projTasksCon">
         <h1 className="headText">Setting</h1>
