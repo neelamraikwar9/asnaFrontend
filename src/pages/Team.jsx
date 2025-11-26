@@ -92,8 +92,8 @@ const Team = () => {
     try {
       console.log(teamForm, "teamForm");
       const response = await axios.post(
-        "https://asna-backend.vercel.app/teams",
-        JSON.stringify(teamForm),
+        " https://asna-backend.vercel.app/teams",
+        JSON.stringify(temForm),
         {
           headers: { "content-Type": "application/json" },
         }
@@ -119,6 +119,7 @@ const Team = () => {
         description: "",
       });
       setTeamForm(false);
+      fetchTeam();
     } catch (error) {
       console.log("Error message: ", error.message);
 
