@@ -22,5 +22,16 @@
 
 .fielStyl{
     padding: 0.2rem; 
+}
 
+.editBtn {
+    background-color:  oklch(54.6% 0.245 262.881);
+    color: white; 
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.editBtn:hover{
+    background-color: oklch(62.3% 0.214 259.815);
+    border-radius: 1rem;
 }

@@ -181,7 +181,7 @@ const TaskDetail = () => {
             <br />
             <div>
               <div>
-                <button onClick={() => setEditFormModel(true)}>Edit</button>
+                <button onClick={() => setEditFormModel(true)} className="editBtn">Edit</button>
 
 
 
