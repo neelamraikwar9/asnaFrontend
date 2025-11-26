@@ -92,7 +92,6 @@ export const TaskFormProvider = ({ children }) => {
       if (error.response) {
         console.error("Server error:", error.response.data);
         console.error("Status:", error.response.status);
-        alert(` Error: ${error.response.data.message || "Failed to add lead"}`);
       } else if (error.request) {
         console.error("Network error:", error.request);
         alert("Network error: Please check your internet connection.");
