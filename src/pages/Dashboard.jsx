@@ -50,7 +50,7 @@ const Dashboard = () => {
 
     console.log(filteredProjects, "filteredProjects");
 
-    const combineState = [...filteredTasks];
+    const combineState = [...filteredTasks, ...filteredProjects];
     console.log(combineState, "combineState");
 
     setFilTasks(combineState);
@@ -195,7 +195,7 @@ const Dashboard = () => {
         <div className="searchBarCon">
           <input
             type="search"
-            placeholder="Search..."
+            placeholder="Search for Tasks..."
             className="searchInp"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
