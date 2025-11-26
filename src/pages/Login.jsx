@@ -71,7 +71,7 @@ const Login = () => {
               <br />
               <div className="password">
                 <input
-                  type="text"
+                  type={ visible ? "text" : "password"}
                   placeholder="Password"
                   id="pass"
                   value={password}
