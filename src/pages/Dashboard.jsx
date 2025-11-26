@@ -1,5 +1,5 @@
 import "./dashboard.css";
-import Navbar from "../components/Navbar";
+
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
