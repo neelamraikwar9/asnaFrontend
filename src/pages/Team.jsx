@@ -50,40 +50,6 @@ const Team = () => {
     console.log(temForm, "chekTeamForm");
   }
 
-  // const handleTeamSubmit = async(e) => {
-  //   e.preventDefault();
-
-  //   console.log(temForm, "Detail is adding");
-
-  //   try{
-  //     const res = await axios.post("https://asna-backend.vercel.app/teams", JSON.stringify(teamForm), {
-  //       headers: {"Content-Type" : "application/json"};
-  //     });
-  //     // console.log(res.data, "Details added successfully");
-  //     toast.success("Team Added successfully.");
-
-  //     setTemForm({
-  //        name : "",
-  //        member: "",
-  //        description: ""
-  //     });
-
-  //   } catch(error){
-  //     console.log("Error message: ", error.message)
-
-  //     if (error.response) {
-  //       console.error("Server error:", error.response.data);
-  //       console.error("Status:", error.response.status);
-  //       alert(` Error: ${error.response.data.message || "Failed to add Team"}`);
-  //     } else if (error.request) {
-  //       console.error("Network error:", error.request);
-  //       alert("Network error: Please check your internet connection.");
-  //     } else {
-  //       console.error("Error:", error.message);
-  //       alert(` Error: ${error.message}`);
-  //     }
-  //   }
-  // }
 
   const handleTeamSubmit = async (e) => {
     e.preventDefault();
@@ -101,16 +67,6 @@ const Team = () => {
       console.log(response.data, "Details added successfully");
       toast.success("Task Added successfully.");
 
-      //   const res = await axios.post(
-      //     "https://asna-backend.vercel.app/teams",
-      //     JSON.stringify(teamForm),
-      //     {
-      //       headers: { "Content-Type": "application/json" }
-      //     }
-      //   );
-      // console.log(res.data, "Details added successfully");
-      //   toast.success("Team Added successfully.");
-
       setTemForm({
         name: "",
         member1: "",
@@ -123,17 +79,7 @@ const Team = () => {
     } catch (error) {
       console.log("Error message: ", error.message);
 
-      // if (error.response) {
-      //   console.error("Server error:", error.response.data);
-      //   console.error("Status:", error.response.status);
-      //   alert(` Error: ${error.response.data.message || "Failed to add Team"}`);
-      // } else if (error.request) {
-      //   console.error("Network error:", error.request);
-      //   alert("Network error: Please check your internet connection.");
-      // } else {
-      //   console.error("Error:", error.message);
-      //   alert(` Error: ${error.message}`);
-      // }
+      
     }
   };
 
@@ -254,9 +200,9 @@ const Team = () => {
 
           {teams.map((team) => (
             <div key={team._id} className="teamCard">
-              <p>
-                <strong>{team.name}</strong>
-              </p>
+              <h3>
+                {team.name}
+              </h3>
 
               <div key={team._id} className="userProf">
                 <p className="prof">{team.member1.charAt(0).toUpperCase()}</p>

@@ -1,5 +1,5 @@
 .cardCon {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: flex;
     flex-wrap: wrap;
 
@@ -19,7 +19,7 @@
 
 
 .userProf {
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     display: flex;
     /* position: relative; */
 
@@ -27,11 +27,11 @@
 }
 
 .prof {
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     /* padding:0.5rem; */
     width: 2rem;
     height: 2rem;
-    background-color: pink;
+    background-color: rgb(241, 192, 255);
     display: flex;
     justify-content: center;
     align-items: center;
