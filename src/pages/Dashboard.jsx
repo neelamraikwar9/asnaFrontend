@@ -20,25 +20,53 @@ const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Filter tasks based on the search term (e.g., searching by task name)
-  const filteredTasks = tasks.filter((task) => {
-    console.log(task.name.toLowerCase());
+  // const filteredTasks = tasks.filter((task) => {
+  //   console.log(task.status.toLowerCase());
 
-    return task.name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
-  console.log(filteredTasks, "filteredTasks");
+  //   return task.status.toLowerCase().includes(searchTerm.toLowerCase());
+  // });
+  // console.log(filteredTasks, "filteredTasks");
+
+  // useEffect(() => {
+  //   setFilTasks(filteredTasks);
+  // }, [searchTerm]);
+
+  // const filteredProjects = projects.filter((proj) =>
+  //   proj.status.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+  // console.log(filteredProjects, "filteredProjects");
+
+  // useEffect(() => {
+  //   setFilTasks(filteredProjects);
+  // }, [searchTerm]);
+
+
+  function getSearchItem(){
+    const filteredTasks = tasks.filter((task) => 
+    // console.log(task.status.toLowerCase());
+    task.status.toLowerCase().includes(searchTerm.toLowerCase()));
+  
+
+
+  // const filteredProjects = projects.filter((proj) =>
+  //   proj.status.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+  
+  // console.log(filteredProjects, "filteredProjects");
+
+  const combineState = [...filteredTasks]
+  console.log(combineState, "combineState");
+
+  setFilTasks(combineState);
+
+  }
 
   useEffect(() => {
-    setFilTasks(filteredTasks);
+    getSearchItem ();
   }, [searchTerm]);
 
-  const filteredProjects = projects.filter((proj) =>
-    proj.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  console.log(filteredProjects, "filteredProjects");
 
-  useEffect(() => {
-    setFilTasks(filteredProjects);
-  }, [searchTerm]);
+
 
   const {
     tForm,
