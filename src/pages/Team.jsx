@@ -1,9 +1,7 @@
 import "./team.css";
-// import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { useTaskForm } from "../Context/TaskFormContext";
 
 const Team = () => {
   const [teams, setTeams] = useState([]);
@@ -19,7 +17,6 @@ const Team = () => {
       setTeams(res.data);
       setLoading(false);
       console.log(res.data, "checking memd");
-      // console.log(Array.isArray(teams)); // should be true;
 
       const resMember = await axios.get(
         "https://asna-backend.vercel.app/users"
@@ -50,7 +47,6 @@ const Team = () => {
     console.log(temForm, "chekTeamForm");
   }
 
-
   const handleTeamSubmit = async (e) => {
     e.preventDefault();
     console.log(teamForm, "Detail is adding");
@@ -78,17 +74,11 @@ const Team = () => {
       fetchTeam();
     } catch (error) {
       console.log("Error message: ", error.message);
-
-      
     }
   };
 
   return (
     <main className="OuterCon">
-      {/* <div className="navbar">
-        <Navbar />
-      </div> */}
-
       <div className="projTasksCon">
         <div className="con">
           <h1>Teams</h1>
@@ -200,9 +190,7 @@ const Team = () => {
 
           {teams.map((team) => (
             <div key={team._id} className="teamCard">
-              <h3>
-                {team.name}
-              </h3>
+              <h3>{team.name}</h3>
 
               <div key={team._id} className="userProf">
                 <p className="prof">{team.member1.charAt(0).toUpperCase()}</p>

@@ -1,5 +1,4 @@
 import "./dashboard.css";
-
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -9,9 +8,8 @@ import { useTaskForm } from "../Context/TaskFormContext";
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [projects, setProjects] = useState([]);
-  // const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState();
-  // console.log(tasks, "checkign")
 
   const [filProjects, setFilProjects] = useState([]);
   const [filTasks, setFilTasks] = useState([]);
@@ -40,33 +38,27 @@ const Dashboard = () => {
   //   setFilTasks(filteredProjects);
   // }, [searchTerm]);
 
+  function getSearchItem() {
+    const filteredTasks = tasks.filter((task) =>
+      // console.log(task.status.toLowerCase());
+      task.status.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
-  function getSearchItem(){
-    const filteredTasks = tasks.filter((task) => 
-    // console.log(task.status.toLowerCase());
-    task.status.toLowerCase().includes(searchTerm.toLowerCase()));
-  
+    const filteredProjects = projects.filter((proj) =>
+      proj.status.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
+    console.log(filteredProjects, "filteredProjects");
 
-  // const filteredProjects = projects.filter((proj) =>
-  //   proj.status.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
-  
-  // console.log(filteredProjects, "filteredProjects");
+    const combineState = [...filteredTasks];
+    console.log(combineState, "combineState");
 
-  const combineState = [...filteredTasks]
-  console.log(combineState, "combineState");
-
-  setFilTasks(combineState);
-
+    setFilTasks(combineState);
   }
 
   useEffect(() => {
-    getSearchItem ();
+    getSearchItem();
   }, [searchTerm]);
-
-
-
 
   const {
     tForm,
@@ -199,10 +191,6 @@ const Dashboard = () => {
   }
   return (
     <main className="OuterCon">
-     {/* <div className="navbar">
-        <Navbar />
-      </div>  */}
-
       <div className="projTasksCon">
         <div className="searchBarCon">
           <input

@@ -3,10 +3,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState } from "react";
 import { useAuth } from "../AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,18 +30,15 @@ const Login = () => {
     if (data.token) {
       login(data.token);
       navigate("/dashboard"); // Success, go to landing page
-      toast.success("You are logged in successfully.")
+      toast.success("You are logged in successfully.");
     } else {
       toast.error("Invalid Email and Password!");
     }
   };
 
-
-  function handleEyeClick(){
-    setVisible( visible => !visible);
+  function handleEyeClick() {
+    setVisible((visible) => !visible);
   }
-
-  
 
   return (
     <main>
@@ -54,7 +50,13 @@ const Login = () => {
         <div className="fields">
           <form onSubmit={handleSubmit}>
             <div className="inpField">
-              <label htmlFor="em" className="lable" style={{marginRight: '11rem'}} >Email</label>
+              <label
+                htmlFor="em"
+                className="lable"
+                style={{ marginRight: "11rem" }}
+              >
+                Email
+              </label>
               <br />
               <input
                 type="email"
@@ -67,36 +69,46 @@ const Login = () => {
             </div>
 
             <div className="inpField">
-              <label htmlFor="pass" className="lable">Password</label>
+              <label htmlFor="pass" className="lable">
+                Password
+              </label>
               <br />
               <div className="password">
                 <input
-                  type={ visible ? "text" : "password"}
+                  type={visible ? "text" : "password"}
                   placeholder="Password"
                   id="pass"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="inpFont"
                 />
-                <button type="button" onClick={handleEyeClick} className="eyeBtn">
-              {visible ? 
-              <i
-                className="bi bi-eye"
-                style={{
-                  position: "absolute",
-                  right: "0.1rem",
-                  margin: "0.1rem",
-                  bottom: "0.1rem",
-                }}
-              ></i>  : 
-              <i class="bi bi-eye-slash" style={{
-                  position: "absolute",
-                  right: "0.1rem",
-                  bottom: '0.1rem',
-                  margin: "0.1rem",
-                }}></i>
-              }
-              </button>
+                <button
+                  type="button"
+                  onClick={handleEyeClick}
+                  className="eyeBtn"
+                >
+                  {visible ? (
+                    <i
+                      className="bi bi-eye"
+                      style={{
+                        position: "absolute",
+                        right: "0.1rem",
+                        margin: "0.1rem",
+                        bottom: "0.1rem",
+                      }}
+                    ></i>
+                  ) : (
+                    <i
+                      class="bi bi-eye-slash"
+                      style={{
+                        position: "absolute",
+                        right: "0.1rem",
+                        bottom: "0.1rem",
+                        margin: "0.1rem",
+                      }}
+                    ></i>
+                  )}
+                </button>
               </div>
             </div>
 
@@ -105,9 +117,9 @@ const Login = () => {
                 Sign in
               </button>
             </div>
-            
+
             <Link to="/signup">
-            <p>Not registered? Sign up now.</p>
+              <p>Not registered? Sign up now.</p>
             </Link>
           </form>
         </div>

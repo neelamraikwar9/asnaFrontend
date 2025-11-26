@@ -1,5 +1,5 @@
 import "./taskDetail.css";
-import './dashboard.css'
+import "./dashboard.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -26,57 +26,31 @@ const TaskDetail = () => {
     createdAt: "",
   });
 
-  // function handleModifyTask(e) {
-  //   const { name, value, options, multiple } = e.target;
-    
-  //   if (name === "project") {
-    
-  //     const selectedTask = tasks.find((tsk) => tsk._id === value) || null;
-  //     console.log(selectedTask, "selectedTask");
-
-  //     useEffect(() => {
-  //             console.log(selectedTask, "selectedTask");
-  //     })
-
-  //     setForm((prev) => ({ ...prev, project: selectedTask }));
-  //     console.log(form, "form");
-  //   } else {
-  //     setForm((prev) => ({ ...prev, [name]: value }));
-  //     console.log(form, "form");
-
-  //   }
-  // }
-
-
-
-
   function handleModifyTask(e) {
-  const { name, value, options, multiple } = e.target;
+    const { name, value, options, multiple } = e.target;
 
-  if (multiple) {
-    // owners multi-select
-    const selectedValues = Array.from(options)
-      .filter(opt => opt.selected)
-      .map(opt => opt.value);
+    if (multiple) {
+      // owners multi-select
+      const selectedValues = Array.from(options)
+        .filter((opt) => opt.selected)
+        .map((opt) => opt.value);
 
-    setForm(prev => ({
-      ...prev,
-      [name]: selectedValues,
-    }));
-  } else {
-    // all other inputs and selects (project, team, status, etc.)
-    setForm(prev => ({
-      ...prev,
-      [name]: value, // project = "projectId", team = "teamId", etc.
-    }));
+      setForm((prev) => ({
+        ...prev,
+        [name]: selectedValues,
+      }));
+    } else {
+      // all other inputs and selects (project, team, status, etc.)
+      setForm((prev) => ({
+        ...prev,
+        [name]: value, // project = "projectId", team = "teamId", etc.
+      }));
+    }
   }
-}
 
-
- useEffect(() => {
-  console.log(form, "Updated form");
-}, [form]);
-
+  useEffect(() => {
+    console.log(form, "Updated form");
+  }, [form]);
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -92,8 +66,8 @@ const TaskDetail = () => {
         // }
       );
 
-    console.log("Update response:", res.data);
-    
+      console.log("Update response:", res.data);
+
       getTask();
       setEditFormModel(false);
       toast.success("Task edited successfully.", {
@@ -105,10 +79,9 @@ const TaskDetail = () => {
     }
   }
 
-
   useEffect(() => {
-    console.log(form, "djkfdkjf")
-  })
+    console.log(form, "djkfdkjf");
+  });
 
   async function getTask() {
     try {
@@ -119,16 +92,15 @@ const TaskDetail = () => {
       setTask(res.data);
 
       setForm({
-  name: res.data.name || "",
-  project: res.data.project?._id || "",
-  team: res.data.team?._id || "",
-  owners: res.data.owners?.map(o => o._id) || [],
-  tags: res.data.tags?.join(", ") || "",
-  timeToComplete: res.data.timeToComplete || "",
-  status: res.data.status || "",
-  createdAt: res.data.createdAt ? res.data.createdAt.slice(0, 10) : "",
-});
-
+        name: res.data.name || "",
+        project: res.data.project?._id || "",
+        team: res.data.team?._id || "",
+        owners: res.data.owners?.map((o) => o._id) || [],
+        tags: res.data.tags?.join(", ") || "",
+        timeToComplete: res.data.timeToComplete || "",
+        status: res.data.status || "",
+        createdAt: res.data.createdAt ? res.data.createdAt.slice(0, 10) : "",
+      });
     } catch (error) {
       console.error(error);
     }
@@ -140,10 +112,6 @@ const TaskDetail = () => {
 
   return (
     <main className="OuterCon">
-      {/* <div className="navbar">
-        <Navbar />
-      </div> */}
-
       <div className="projTasksCon">
         <div className="detailHeadTitle">
           <h2 className="headText">Task Details</h2>
@@ -181,48 +149,31 @@ const TaskDetail = () => {
             <br />
             <div>
               <div>
-                <button onClick={() => setEditFormModel(true)} className="editBtn">Edit</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <button
+                  onClick={() => setEditFormModel(true)}
+                  className="editBtn"
+                >
+                  Edit
+                </button>
 
                 {editFormModel && (
                   <div className="modal-overlay">
-                    <form
-                      className="modal-content"
-                      onSubmit={handleFormSubmit}
-                    >
-                    {/* <div className="fieldCon"></div> */}
+                    <form className="modal-content" onSubmit={handleFormSubmit}>
+                      {/* <div className="fieldCon"></div> */}
                       <div className="fieldCon fielStyl">
                         <label>Task Name: </label>
-                       
+
                         <input
                           type="text"
                           name="name"
                           value={form.name}
                           onChange={handleModifyTask}
-                          style = {{fontSize: "14px"}}
+                          style={{ fontSize: "14px" }}
                         />
                       </div>
                       <div className="fieldCon fielStyl">
                         <label>Select Project</label>
-                      
+
                         <select
                           name="project"
                           value={form.project}
@@ -238,7 +189,7 @@ const TaskDetail = () => {
 
                       <div className="fieldCon fielStyl">
                         <label>Select Team</label>
-                        
+
                         <select
                           name="team"
                           value={form.team}
@@ -254,7 +205,7 @@ const TaskDetail = () => {
 
                       <div className="fieldCon fielStyl">
                         <label>Select Owners</label>
-                      
+
                         <select
                           name="owners"
                           value={form.owners}
@@ -271,7 +222,7 @@ const TaskDetail = () => {
 
                       <div className="fieldCon fielStyl">
                         <label>Due Date</label>
-                       
+
                         <input
                           type="date"
                           name="createdAt"
@@ -282,7 +233,7 @@ const TaskDetail = () => {
 
                       <div className="fieldCon fielStyl">
                         <label>Status</label>
-            
+
                         <select
                           className=" selInp"
                           name="status"
@@ -298,26 +249,25 @@ const TaskDetail = () => {
 
                       <div className="fieldCon fielStyl">
                         <label>Tag</label>
-                     
+
                         <input
                           type="text"
                           name="tags"
                           value={form.tags}
                           onChange={(e) => handleModifyTask(e)}
-                          style = {{fontSize: "14px"}}
-                          
+                          style={{ fontSize: "14px" }}
                         />
                       </div>
 
                       <div className="fieldCon fielStyl">
                         <label>Time Remaining</label>
-                        
+
                         <input
                           type="count"
                           name="timeToComplete"
                           value={form.timeToComplete}
                           onChange={(e) => handleModifyTask(e)}
-                          style = {{fontSize: "14px"}}
+                          style={{ fontSize: "14px" }}
                         />
                       </div>
 

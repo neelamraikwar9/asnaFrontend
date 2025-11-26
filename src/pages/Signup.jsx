@@ -16,7 +16,6 @@ const Signup = () => {
 
   async function handleSignUpSubmit(e) {
     e.preventDefault();
-    // setError(null);
 
     const res = await fetch("https://asna-backend.vercel.app/api/signup", {
       method: "POST",
@@ -27,15 +26,15 @@ const Signup = () => {
     const data = res.json();
     if (res.status === 201) {
       navigate("/dashboard");
-      toast.success("You are logged in successfully.")
+      toast.success("You are logged in successfully.");
     } else {
       setError(data.error || "Invalid credentials");
-      toast.error("Already have an account.")
+      toast.error("Already have an account.");
     }
   }
 
-  function handleEyeClick(){
-    setVisible( visible => !visible);
+  function handleEyeClick() {
+    setVisible((visible) => !visible);
   }
 
   return (
@@ -79,33 +78,40 @@ const Signup = () => {
               <label className="lable">Password</label>
               <br />
               <div className="password">
-              <input
-                type= { visible ? "text" : "password"}
-                placeholder="Enter Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="inpFont"
-              />
-              <button type="button" onClick={handleEyeClick} className="eyeBtn">
-              {visible ? 
-              <i
-                className="bi bi-eye"
-                style={{
-                  position: "absolute",
-                  right: "0.1rem",
-                  margin: "0.1rem",
-                  bottom: "0.1rem",
-                }}
-              ></i>  : 
-              <i class="bi bi-eye-slash" style={{
-                  position: "absolute",
-                  right: "0.1rem",
-                  bottom: '0.1rem',
-                  margin: "0.1rem",
-                }}></i>
-              }
-              </button>
-
+                <input
+                  type={visible ? "text" : "password"}
+                  placeholder="Enter Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="inpFont"
+                />
+                <button
+                  type="button"
+                  onClick={handleEyeClick}
+                  className="eyeBtn"
+                >
+                  {visible ? (
+                    <i
+                      className="bi bi-eye"
+                      style={{
+                        position: "absolute",
+                        right: "0.1rem",
+                        margin: "0.1rem",
+                        bottom: "0.1rem",
+                      }}
+                    ></i>
+                  ) : (
+                    <i
+                      class="bi bi-eye-slash"
+                      style={{
+                        position: "absolute",
+                        right: "0.1rem",
+                        bottom: "0.1rem",
+                        margin: "0.1rem",
+                      }}
+                    ></i>
+                  )}
+                </button>
               </div>
             </div>
 
@@ -114,7 +120,6 @@ const Signup = () => {
                 Sign Up
               </button>
             </div>
-            {/* {error && <div style={{ color: "red" }}>{error}</div>} */}
 
             <Link to="/">
               <p>Already have an account? Sign in.</p>

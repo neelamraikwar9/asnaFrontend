@@ -1,5 +1,4 @@
 import "./setting.css";
-// import Navbar from "../components/Navbar";
 import { useTaskForm } from "../Context/TaskFormContext";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -35,11 +34,6 @@ const Setting = () => {
 
     try {
       await axios.delete(`https://asna-backend.vercel.app/tasks/${taskId}`);
-      // setTasks((prev) => {
-      //   const updated = prev.filter((tas) => tas._id !== taskId);
-      //   console.log(updated, "Filtered tasks after delete");
-      //   return updated;
-      // });
 
       setTasks((prev) => prev.filter((tas) => tas._id !== taskId));
       console.log(tasks, "kdfkljdfkjdfjkl");
@@ -55,10 +49,6 @@ const Setting = () => {
 
   return (
     <main className="OuterCon">
-      {/* <div className="navbar">
-        <Navbar />
-      </div> */}
-
       <div className="projTasksCon">
         <h1 className="headText">Setting</h1>
         <h2>Manage Projects and Tasks</h2>

@@ -1,14 +1,10 @@
 import "./project.css";
-import Navbar from "../components/Navbar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useTaskForm } from "../Context/TaskFormContext";
 import { Link } from "react-router-dom";
 
 const Project = () => {
-  // const [tasks, setTasks] = useState([]);
-  // const [projects, setProjects] = useState([]);
-  // const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const {
     tForm,
@@ -25,28 +21,9 @@ const Project = () => {
     loading,
     setLoading,
   } = useTaskForm();
-  // const [filStatus, setFilStatus] = useState([]);
+
   const [filSort, setFilSort] = useState([]);
   console.log(filSort, "filsort");
-
-  // async function getTasks() {
-  //   try {
-  //     const resTasks = await axios.get("https://asna-backend.vercel.app/tasks");
-  //     console.log(resTasks.data);
-  //     setTasks(resTasks.data);
-  //     console.log(tasks, "checking tasks... ")
-
-  //     setFilStatus(resTasks.data);
-  //     setLoading(false);
-  //     console.log(tasks, "checking tasks");
-  //   } catch (error) {
-  //     console.log("Error message: ", error.message);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getTasks();
-  // }, []);
 
   async function handleStatusOnChange(e) {
     let statusOption = e.target.value;
@@ -86,10 +63,6 @@ const Project = () => {
 
   return (
     <main className="OuterCon">
-      {/* <div className="navbar">
-        <Navbar />
-      </div> */}
-
       <div className="projTasksCon">
         <div>
           {loading && <p>Project name with description is Loading...</p>}

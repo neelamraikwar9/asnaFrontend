@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 const ProtectedLayout = () => {
   return (
-     <main className="OuterCon">
+    <main className="OuterCon">
       <div className="navbar">
         <Navbar />
       </div>
@@ -11,7 +11,7 @@ const ProtectedLayout = () => {
         <Outlet />
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default ProtectedLayout
+export default ProtectedLayout;

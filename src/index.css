@@ -16,20 +16,21 @@
   /* -moz-osx-font-smoothing: grayscale; */
 }
 
-  a {
-    font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
-  }
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
 
-  a:hover {
-    color: oklch(60.6% 0.25 292.717)
-  }
+a:hover {
+  color: oklch(60.6% 0.25 292.717)
+}
 
 
-  a.active, 
-  a[aria-current="page"] {
-  color: oklch(60.6% 0.25 292.717); /* purple for active/current page */
+a.active,
+a[aria-current="page"] {
+  color: oklch(60.6% 0.25 292.717);
+  /* purple for active/current page */
   font-weight: bold;
 }
 

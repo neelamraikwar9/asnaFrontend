@@ -1,5 +1,4 @@
-import './report.css';
-import Navbar from "../components/Navbar";
+import "./report.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
@@ -84,80 +83,77 @@ const Report = () => {
 
   return (
     <main className="OuterCon">
-      {/* <div className="navbar">
-        <Navbar />
-      </div> */}
       <div className="projTasksCon">
         <h1 className="headText">Report Overview</h1>
         <h2>Total Work Done Last Week:</h2>
 
         <div>
-         <div className="chartCon">
-          <div style={{ width: "25rem", height: "25rem" }}>
-            <Doughnut
-              data={{
-                labels: ["Total Completed Tasks", "All Tasks"],
-                datasets: [
-                  {
-                    label: "Tasks",
-                    data: [completedTasks, allTasks],
-                    backgroundColor: [
-                      "rgba(9, 153, 249, 0.6)",
-                      "rgba(7, 250, 250, 0.6)",
-                    ],
-                    borderWidth: 1,
-                  },
-                ],
-              }}
-            />
-          </div>
+          <div className="chartCon">
+            <div style={{ width: "25rem", height: "25rem" }}>
+              <Doughnut
+                data={{
+                  labels: ["Total Completed Tasks", "All Tasks"],
+                  datasets: [
+                    {
+                      label: "Tasks",
+                      data: [completedTasks, allTasks],
+                      backgroundColor: [
+                        "rgba(9, 153, 249, 0.6)",
+                        "rgba(7, 250, 250, 0.6)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                }}
+              />
+            </div>
           </div>
           <br />
 
           <h2>Total Days of Work Pending: </h2>
-           <div className="chartCon">
-          <div style={{ width: "25rem", height: "25rem" }}>
-            <Doughnut
-              data={{
-                labels: ["Pending Tasks", "All Tasks"],
-                datasets: [
-                  {
-                    label: "Tasks",
-                    data: [pendingTask, allTasks],
-                    backgroundColor: [
-                      "rgba(249, 169, 9, 0.6)",
-                      "rgba(7, 250, 250, 0.6)",
-                    ],
-                    borderWidth: 1,
-                  },
-                ],
-              }}
-            />
-          </div>
+          <div className="chartCon">
+            <div style={{ width: "25rem", height: "25rem" }}>
+              <Doughnut
+                data={{
+                  labels: ["Pending Tasks", "All Tasks"],
+                  datasets: [
+                    {
+                      label: "Tasks",
+                      data: [pendingTask, allTasks],
+                      backgroundColor: [
+                        "rgba(249, 169, 9, 0.6)",
+                        "rgba(7, 250, 250, 0.6)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                }}
+              />
+            </div>
           </div>
 
           <br />
 
           <h2>Tasks Closed by Team:</h2>
           <div className="chartCon">
-          <div style={{ width: "25rem", height: "25rem"}}>
-            <Doughnut
-              data={{
-                labels: ["Blocked Tasks", "All Tasks"],
-                datasets: [
-                  {
-                    label: "Tasks",
-                    data: [closedTask, allTasks],
-                    backgroundColor: [
-                      "rgba(185, 187, 185, 0.6)",
-                      "rgba(7, 250, 250, 0.6)",
-                    ],
-                    borderWidth: 1,
-                  },
-                ],
-              }}
-            />
-          </div>
+            <div style={{ width: "25rem", height: "25rem" }}>
+              <Doughnut
+                data={{
+                  labels: ["Blocked Tasks", "All Tasks"],
+                  datasets: [
+                    {
+                      label: "Tasks",
+                      data: [closedTask, allTasks],
+                      backgroundColor: [
+                        "rgba(185, 187, 185, 0.6)",
+                        "rgba(7, 250, 250, 0.6)",
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
