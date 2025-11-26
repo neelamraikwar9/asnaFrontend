@@ -61,7 +61,7 @@ const Team = () => {
         }
       );
       console.log(response.data, "Details added successfully");
-      toast.success("Task Added successfully.");
+      toast.success("Team Added successfully.");
 
       setTemForm({
         name: "",
